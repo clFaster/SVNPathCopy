@@ -8,11 +8,19 @@ namespace SVNPathCopy
     {
         protected override bool CanShowMenu()
         {
-            throw new NotImplementedException();
+            // Todo: Should only be shown in SVN Repos!
+            return true;
         }
 
         protected override ContextMenuStrip CreateMenu()
         {
+            var menu = new ContextMenuStrip();
+
+            var itemCopySVNPathWithRevision = new ToolStripMenuItem
+            {
+                Text = "Copy SVN Path with Revision",
+                Image = Properties.Resources.share_svn
+            };
             throw new NotImplementedException();
         }
 
