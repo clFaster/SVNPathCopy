@@ -29,26 +29,47 @@ namespace SVNPathCopy
                     };
 
                     svnClient.GetStatus(selectedFilePath, svnStatusArgs, out Collection<SvnStatusEventArgs> states);
-
-                    if (states.Count != 1)
-                    {
-                        // File is not in a svn repository
-                        return false;
-                    }
-                    if(SvnStatus.NotVersioned == states[0].LocalContentStatus)
-                    {
-                        // File wasn't added to SVN repository
-                        MessageBox.Show("Item is not under version control", "Error");
-                        return false;
-                    }
                 }
             }
             catch
             {
-                MessageBox.Show("Unknown Error occurred", "Error");
+                // File is not in a svn repository
                 return false;
             }
             return true;
+        }
+
+        private bool ShowedCopySvnPath()
+        {
+            var selectedFilePath = SelectedItemPaths.First();
+
+            using (SvnClient svnClient = new SvnClient())
+            {
+                SvnStatusArgs svnStatusArgs = new SvnStatusArgs
+                {
+                    Depth = SvnDepth.Empty
+                };
+
+                svnClient.GetStatus(selectedFilePath, svnStatusArgs, out Collection<SvnStatusEventArgs> states);
+
+                if (states.Count == 0)
+                {
+                    return true;
+                }
+                if (SvnStatus.NotVersioned == states[0].LocalContentStatus)
+                {
+                    // File wasn't added to SVN repository
+                    MessageBox.Show("Item is not under version control - please add and commit your changes", "Error");
+                    return false;
+                }
+                if (states.Count != 0 && !states.First().IsRemoteUpdated)
+                {
+                    MessageBox.Show("Item is scheduled for addition - please commit your changes", "Error");
+                    return false;
+                }
+            }
+            MessageBox.Show("Unknown error occurred", "Error");
+            return false;
         }
 
         private SvnInfoEventArgs GetSVNInfo()
@@ -71,8 +92,14 @@ namespace SVNPathCopy
 
         private void CopySVNPath(bool withRevision)
         {
-            var svnUri = GetSVNURI(withRevision);
-            Clipboard.SetText(svnUri);
+            if (ShowedCopySvnPath())
+            {
+                Clipboard.SetText(GetSVNURI(withRevision));
+            }
+            else
+            {
+                Clipboard.Clear();
+            }
         }
 
         // Check if the Context Menu entry should be shown
