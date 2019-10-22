@@ -2,7 +2,8 @@
 using SharpShell.SharpContextMenu;
 using SharpSvn;
 using System;
-using System.Web;
+using System.Diagnostics;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -13,22 +14,38 @@ namespace SVNPathCopy
     [COMServerAssociation(AssociationType.AllFilesAndFolders)]
     public class SVNPathCopy : SharpContextMenu
     {
+        // Check if File or Folder exists in SVN and if the local revision is pushed to the server!
+        // Show Popup if it isn't released
         private bool IsFileOrFolderInSVNRepo()
         {
+            var selectedFilePath = SelectedItemPaths.First();
             try
             {
-                var selectedFilePath = SelectedItemPaths.First();
-                MessageBox.Show(selectedFilePath);
-                var workingCopyClient = new SvnClient();
+                using (SvnClient svnClient = new SvnClient())
+                {
+                    SvnStatusArgs svnStatusArgs = new SvnStatusArgs
+                    {
+                        Depth = SvnDepth.Empty
+                    };
 
-                SvnInfoEventArgs info;
+                    svnClient.GetStatus(selectedFilePath, svnStatusArgs, out Collection<SvnStatusEventArgs> states);
 
-                workingCopyClient.GetInfo(selectedFilePath, out info);
-
-                MessageBox.Show(info.LastChangeRevision.ToString());
+                    if (states.Count != 1)
+                    {
+                        // File is not in a svn repository
+                        return false;
+                    }
+                    if(SvnStatus.NotVersioned == states[0].LocalContentStatus)
+                    {
+                        // File wasn't added to SVN repository
+                        MessageBox.Show("Item is not under version control", "Error");
+                        return false;
+                    }
+                }
             }
             catch
             {
+                MessageBox.Show("Unknown Error occurred", "Error");
                 return false;
             }
             return true;
@@ -58,18 +75,18 @@ namespace SVNPathCopy
             Clipboard.SetText(svnUri);
         }
 
+        // Check if the Context Menu entry should be shown
         protected override bool CanShowMenu()
         {
-            // Todo: Should only be shown in SVN Repos!
-            // Can only be shown when one item is selected
-            if (SelectedItemPaths.Count() != 1)
+            // Check if only one file or folder is selected and file or folder exists in SVN
+            if (SelectedItemPaths.Count() == 1 && IsFileOrFolderInSVNRepo())
             {
-                return false;
+                return true;
             }
-
-            return IsFileOrFolderInSVNRepo();
+            return false;
         }
 
+        // Create the Context Menu entry
         protected override ContextMenuStrip CreateMenu()
         {
             var menu = new ContextMenuStrip();
@@ -77,14 +94,14 @@ namespace SVNPathCopy
             // Create Menu Entry with Revision
             var itemCopySVNPathWithRevision = new ToolStripMenuItem
             {
-                Text = "Copy SVN Path with Revision",
+                Text = "Copy SVN URL with REV",
                 Image = Properties.Resources.share_svn
             };
 
             // Create Menu Entry without Revision
             var itemCopySVNPathWithoutRevision = new ToolStripMenuItem
             {
-                Text = "Copy SVN Path",
+                Text = "Copy SVN URL",
                 Image = Properties.Resources.share_svn
             };
 
