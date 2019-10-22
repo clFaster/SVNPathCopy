@@ -1,6 +1,8 @@
 ﻿using SharpShell.Attributes;
 using SharpShell.SharpContextMenu;
+using SharpSvn;
 using System;
+using System.Web;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -8,14 +10,64 @@ using System.Windows.Forms;
 namespace SVNPathCopy
 {
     [ComVisible(true)]
-    [COMServerAssociation(AssociationType.AllFiles)]
+    [COMServerAssociation(AssociationType.AllFilesAndFolders)]
     public class SVNPathCopy : SharpContextMenu
     {
+        private bool IsFileOrFolderInSVNRepo()
+        {
+            try
+            {
+                var selectedFilePath = SelectedItemPaths.First();
+                MessageBox.Show(selectedFilePath);
+                var workingCopyClient = new SvnClient();
+
+                SvnInfoEventArgs info;
+
+                workingCopyClient.GetInfo(selectedFilePath, out info);
+
+                MessageBox.Show(info.LastChangeRevision.ToString());
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private SvnInfoEventArgs GetSVNInfo()
+        {
+            var workingCopyClient = new SvnClient();
+            workingCopyClient.GetInfo(SelectedItemPaths.First(), out SvnInfoEventArgs info);
+            return info;
+        }
+
+        private String GetSVNURI(bool withRevision)
+        {
+            var svnInfo = GetSVNInfo();
+            String svnUri = Uri.EscapeUriString(svnInfo.Uri.ToString());
+            if (withRevision)
+            {
+                svnUri += "?p=" + svnInfo.LastChangeRevision.ToString();
+            }
+            return svnUri;
+        }
+
+        private void CopySVNPath(bool withRevision)
+        {
+            var svnUri = GetSVNURI(withRevision);
+            Clipboard.SetText(svnUri);
+        }
+
         protected override bool CanShowMenu()
         {
             // Todo: Should only be shown in SVN Repos!
             // Can only be shown when one item is selected
-            return SelectedItemPaths.Count() == 1;
+            if (SelectedItemPaths.Count() != 1)
+            {
+                return false;
+            }
+
+            return IsFileOrFolderInSVNRepo();
         }
 
         protected override ContextMenuStrip CreateMenu()
@@ -46,11 +98,5 @@ namespace SVNPathCopy
 
             return menu;
         }
-
-        private void CopySVNPath(bool with_revision)
-        {
-            MessageBox.Show("SVN Path with revision should be copied to clipboard");
-        }
-
     }
 }
