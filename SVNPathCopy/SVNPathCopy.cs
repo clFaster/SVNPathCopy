@@ -2,7 +2,6 @@
 using SharpShell.SharpContextMenu;
 using SharpSvn;
 using System;
-using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -11,7 +10,7 @@ using System.Windows.Forms;
 namespace SVNPathCopy
 {
     [ComVisible(true)]
-    [COMServerAssociation(AssociationType.AllFilesAndFolders)]
+    [COMServerAssociation(AssociationType.AllFiles)]
     public class SVNPathCopy : SharpContextMenu
     {
         // Check if File or Folder exists in SVN and if the local revision is pushed to the server!
