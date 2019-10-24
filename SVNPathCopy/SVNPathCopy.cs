@@ -13,8 +13,6 @@ namespace SVNPathCopy
     [COMServerAssociation(AssociationType.AllFiles)]
     public class SVNPathCopy : SharpContextMenu
     {
-        // Check if File or Folder exists in SVN and if the local revision is pushed to the server!
-        // Show Popup if it isn't released
         private bool IsFileOrFolderInSVNRepo()
         {
             var selectedFilePath = SelectedItemPaths.First();
@@ -26,38 +24,31 @@ namespace SVNPathCopy
                     {
                         Depth = SvnDepth.Empty
                     };
-
                     svnClient.GetStatus(selectedFilePath, svnStatusArgs, out Collection<SvnStatusEventArgs> states);
                 }
             }
             catch
             {
-                // File is not in a svn repository
                 return false;
             }
             return true;
         }
 
-        private bool ShowedCopySvnPath()
+        private bool IsCopySVNPathPossible()
         {
-            var selectedFilePath = SelectedItemPaths.First();
-
             using (SvnClient svnClient = new SvnClient())
             {
                 SvnStatusArgs svnStatusArgs = new SvnStatusArgs
                 {
-                    Depth = SvnDepth.Empty
+                    Depth = SvnDepth.Infinity
                 };
-
-                svnClient.GetStatus(selectedFilePath, svnStatusArgs, out Collection<SvnStatusEventArgs> states);
-
+                svnClient.GetStatus(SelectedItemPaths.First(), svnStatusArgs, out Collection<SvnStatusEventArgs> states);
                 if (states.Count == 0)
                 {
                     return true;
                 }
                 if (SvnStatus.NotVersioned == states[0].LocalContentStatus)
                 {
-                    // File wasn't added to SVN repository
                     MessageBox.Show("Item is not under version control - please add and commit your changes", "Error");
                     return false;
                 }
@@ -91,7 +82,7 @@ namespace SVNPathCopy
 
         private void CopySVNPath(bool withRevision)
         {
-            if (ShowedCopySvnPath())
+            if (IsCopySVNPathPossible())
             {
                 Clipboard.SetText(GetSVNURI(withRevision));
             }
@@ -136,6 +127,7 @@ namespace SVNPathCopy
             itemCopySVNPathWithoutRevision.Click += (sender, args) => CopySVNPath(false);
 
             // Add items to menu
+            menu.Items.Add(new ToolStripSeparator());
             menu.Items.Add(itemCopySVNPathWithRevision);
             menu.Items.Add(itemCopySVNPathWithoutRevision);
 
