@@ -1,4 +1,4 @@
-# SVN Path Copy &middot; [![Build Status](https://img.shields.io/travis/npm/npm/latest.svg?style=flat-square)](https://travis-ci.org/npm/npm) [![npm](https://img.shields.io/npm/v/npm.svg?style=flat-square)](https://www.npmjs.com/package/npm) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
+# SVN Path Copy &middot; [![Build Status](https://travis-ci.org/clFaster/SVNPathCopy.svg?branch=master)](https://travis-ci.org/clFaster/SVNPathCopy) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/your/your-project/blob/master/LICENSE)
 
 Adds an context menu entry to copy the url of an svn file or folder with the reference number (?p=number).
 > eg https://your-svn.org/your-repo/file.txt?p=2
