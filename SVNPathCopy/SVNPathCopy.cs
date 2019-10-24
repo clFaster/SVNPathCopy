@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Web;
 
 namespace SVNPathCopy
 {
@@ -72,7 +73,7 @@ namespace SVNPathCopy
         private String GetSVNURI(bool withRevision)
         {
             var svnInfo = GetSVNInfo();
-            String svnUri = Uri.EscapeUriString(svnInfo.Uri.ToString());
+            String svnUri = HttpUtility.UrlPathEncode(svnInfo.Uri.ToString());
             if (withRevision)
             {
                 svnUri += "?p=" + svnInfo.LastChangeRevision.ToString();
