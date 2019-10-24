@@ -1,2 +1,2 @@
 language: csharp
-solution: SVNPathCopy.sln
+solution: SVNPathCopy/SVNPathCopy.sln
