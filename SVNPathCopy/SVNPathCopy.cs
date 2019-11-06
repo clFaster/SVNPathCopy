@@ -7,11 +7,12 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Web;
+using System.IO;
 
 namespace SVNPathCopy
 {
     [ComVisible(true)]
-    [COMServerAssociation(AssociationType.AllFiles)]
+    [COMServerAssociation(AssociationType.AllFilesAndFolders)]
     public class SVNPathCopy : SharpContextMenu
     {
         private bool IsFileOrFolderInSVNRepo()
@@ -41,7 +42,7 @@ namespace SVNPathCopy
             {
                 SvnStatusArgs svnStatusArgs = new SvnStatusArgs
                 {
-                    Depth = SvnDepth.Infinity
+                    Depth = SvnDepth.Empty
                 };
                 svnClient.GetStatus(SelectedItemPaths.First(), svnStatusArgs, out Collection<SvnStatusEventArgs> states);
                 if (states.Count == 0)
@@ -107,15 +108,27 @@ namespace SVNPathCopy
         // Create the Context Menu entry
         protected override ContextMenuStrip CreateMenu()
         {
+            FileAttributes attr = File.GetAttributes(SelectedItemPaths.First());
+
             var menu = new ContextMenuStrip();
+            menu.Items.Add(new ToolStripSeparator());
 
-            // Create Menu Entry with Revision
-            var itemCopySVNPathWithRevision = new ToolStripMenuItem
+            // Create Menu Entry with Revision - create only for files
+            if (!attr.HasFlag(FileAttributes.Directory))
             {
-                Text = "Copy SVN URL with REV",
-                Image = Properties.Resources.share_svn
-            };
+                var itemCopySVNPathWithRevision = new ToolStripMenuItem
+                {
+                    Text = "Copy SVN URL with REV",
+                    Image = Properties.Resources.share_svn
+                };
 
+                // Set action
+                itemCopySVNPathWithRevision.Click += (sender, args) => CopySVNPath(true);
+
+                // Add items to menu
+                menu.Items.Add(itemCopySVNPathWithRevision);
+            }
+            
             // Create Menu Entry without Revision
             var itemCopySVNPathWithoutRevision = new ToolStripMenuItem
             {
@@ -123,13 +136,10 @@ namespace SVNPathCopy
                 Image = Properties.Resources.share_svn
             };
 
-            // Set action when clicked
-            itemCopySVNPathWithRevision.Click += (sender, args) => CopySVNPath(true);
+            // Set action
             itemCopySVNPathWithoutRevision.Click += (sender, args) => CopySVNPath(false);
 
             // Add items to menu
-            menu.Items.Add(new ToolStripSeparator());
-            menu.Items.Add(itemCopySVNPathWithRevision);
             menu.Items.Add(itemCopySVNPathWithoutRevision);
 
             return menu;
