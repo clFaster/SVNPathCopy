@@ -76,6 +76,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C124AFF803D144DF8470C69D11049402"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_BC6EFC32FA654489BA74C1F4E06C133C"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -83,12 +89,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_C6FE8C86760069F47B0B3D97C7DB067D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C124AFF803D144DF8470C69D11049402"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -462,15 +462,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:SVN Path Copy"
-        "ProductCode" = "8:{2DECC79F-44C8-4EAB-ACD1-CAF48C407E9E}"
-        "PackageCode" = "8:{379E41E2-B3AA-4798-A30A-518D94789464}"
+        "ProductCode" = "8:{878B2B18-E643-4D64-BDF6-7D50A0DD7ABA}"
+        "PackageCode" = "8:{462D9F03-E8E8-483E-A979-982BA26169F4}"
         "UpgradeCode" = "8:{124C8FD5-AE5B-43DB-B3A3-30393442E0A6}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:SVNPathCopy"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:https://github.com/clFaster/SVNPathCopy"
