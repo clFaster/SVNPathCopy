@@ -1,4 +1,4 @@
-# SVN Path Copy &middot; [![Build Status](https://travis-ci.org/clFaster/SVNPathCopy.svg?branch=master)](https://travis-ci.org/clFaster/SVNPathCopy)
+# SVN Path Copy &middot; [![Build Status](https://travis-ci.org/clFaster/SVNPathCopy.svg?branch=master)](https://travis-ci.org/clFaster/SVNPathCopy) [![CodeFactor](https://www.codefactor.io/repository/github/clfaster/svnpathcopy/badge)](https://www.codefactor.io/repository/github/clfaster/svnpathcopy)
 
 Adds an context menu entry to copy the url of an svn file or folder with the reference number (?p=number).
 > For Example: https://your-svn.org/your-repo/file.txt?p=2
