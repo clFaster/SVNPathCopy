@@ -114,21 +114,19 @@ namespace SVNPathCopy
             menu.Items.Add(new ToolStripSeparator());
 
             // Create Menu Entry with Revision - create only for files
-            if (!attr.HasFlag(FileAttributes.Directory))
+            var itemCopySVNPathWithRevision = new ToolStripMenuItem
             {
-                var itemCopySVNPathWithRevision = new ToolStripMenuItem
-                {
-                    Text = "Copy SVN URL with REV",
-                    Image = Properties.Resources.share_svn
-                };
+                Text = "Copy SVN URL with REV",
+                Image = Properties.Resources.share_svn
+            };
 
-                // Set action
-                itemCopySVNPathWithRevision.Click += (sender, args) => CopySVNPath(true);
+            // Set action
+            itemCopySVNPathWithRevision.Click += (sender, args) => CopySVNPath(true);
 
-                // Add items to menu
-                menu.Items.Add(itemCopySVNPathWithRevision);
-            }
-            
+            // Add items to menu
+            menu.Items.Add(itemCopySVNPathWithRevision);
+
+
             // Create Menu Entry without Revision
             var itemCopySVNPathWithoutRevision = new ToolStripMenuItem
             {
