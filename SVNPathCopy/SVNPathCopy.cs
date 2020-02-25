@@ -36,13 +36,13 @@ namespace SVNPathCopy
             return true;
         }
 
-        private bool IsCopySVNPathPossible()
+        private bool IsCopySVNPathPossible(bool withRevision)
         {
             using (SvnClient svnClient = new SvnClient())
             {
                 SvnStatusArgs svnStatusArgs = new SvnStatusArgs
                 {
-                    Depth = SvnDepth.Empty
+                    Depth = SvnDepth.Infinity
                 };
                 svnClient.GetStatus(SelectedItemPaths.First(), svnStatusArgs, out Collection<SvnStatusEventArgs> states);
                 if (states.Count == 0)
@@ -56,6 +56,11 @@ namespace SVNPathCopy
                 }
                 if (states.Count != 0 && !states.First().IsRemoteUpdated)
                 {
+                    if (withRevision == false)
+                    {
+                        // Copy SVN Path without revision even if not committed changes!
+                        return true;
+                    }
                     MessageBox.Show("Item is scheduled for addition - please commit your changes", "Error");
                     return false;
                 }
@@ -84,7 +89,7 @@ namespace SVNPathCopy
 
         private void CopySVNPath(bool withRevision)
         {
-            if (IsCopySVNPathPossible())
+            if (IsCopySVNPathPossible(withRevision))
             {
                 Clipboard.SetText(GetSVNURI(withRevision));
             }
