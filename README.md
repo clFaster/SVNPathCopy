@@ -3,6 +3,20 @@
 Adds an context menu entry to copy the url of an svn file or folder with the last change revision number (?p=number).
 > For Example: https://your-svn.org/your-repo/file.txt?p=2
 
+## Flowchart
+```mermaid
+flowchart TD
+    A[Right-Click on File or Folder] --> B{Is in SVN Repo?}
+    B -- No --> C[Don't show SVN Path Copy Context Menu]
+    B -- Yes --> D[Show SVN Path Copy Context Menu]
+    D --> E[Click on Context Menu Item]
+    E --> F{Is Item under SVN Version Control?}
+    F -- No --> G[Show Error]
+    F -- Yes --> H{Was Item locally changed?}
+    H -- No --> I[Show Error]
+    H -- Yes --> J[Copy Path]
+```
+
 ## Developing
 
 SVN Path Copy is currently developed in Visual Studio 2017.
