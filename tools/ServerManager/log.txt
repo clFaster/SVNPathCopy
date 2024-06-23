@@ -1,0 +1,311 @@
+2024-06-23 17:40:59.319Z - ServerManager - SharpShell Diagnostics Initialised. Process ServerManager.
+2024-06-23 17:40:59.327Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 17:40:59.345Z - ServerManager - error: System.BadImageFormatException: Die Datei oder Assembly "SvnPathCopy.SharpShell, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2402f9d358d830ef" oder eine Abhängigkeit davon wurde nicht gefunden. Es wurde versucht, eine Datei mit einem falschen Format zu laden.
+Dateiname: "SvnPathCopy.SharpShell, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2402f9d358d830ef"
+   bei System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.Assembly.Load(AssemblyName assemblyRef)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.LoadAssembly(String codeBase)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog..ctor(String codeBase)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 32.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 17:43:35.636Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 17:43:35.642Z - ServerManager - error: System.BadImageFormatException: Die Datei oder Assembly "SvnPathCopy.SharpShell, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2402f9d358d830ef" oder eine Abhängigkeit davon wurde nicht gefunden. Es wurde versucht, eine Datei mit einem falschen Format zu laden.
+Dateiname: "SvnPathCopy.SharpShell, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2402f9d358d830ef"
+   bei System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.Assembly.Load(AssemblyName assemblyRef)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.LoadAssembly(String codeBase)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog..ctor(String codeBase)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 32.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 17:48:28.885Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 17:48:28.890Z - ServerManager - error: System.BadImageFormatException: Die Datei oder Assembly "SvnPathCopy.SharpShell, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2402f9d358d830ef" oder eine Abhängigkeit davon wurde nicht gefunden. Es wurde versucht, eine Datei mit einem falschen Format zu laden.
+Dateiname: "SvnPathCopy.SharpShell, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2402f9d358d830ef"
+   bei System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.Assembly.Load(AssemblyName assemblyRef)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.LoadAssembly(String codeBase)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog..ctor(String codeBase)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 32.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 17:48:34.413Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 17:48:34.419Z - ServerManager - error: System.BadImageFormatException: Die Datei oder Assembly "SvnPathCopy.SharpShell, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2402f9d358d830ef" oder eine Abhängigkeit davon wurde nicht gefunden. Es wurde versucht, eine Datei mit einem falschen Format zu laden.
+Dateiname: "SvnPathCopy.SharpShell, Version=0.0.0.0, Culture=neutral, PublicKeyToken=2402f9d358d830ef"
+   bei System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.RuntimeAssembly.nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   bei System.Reflection.Assembly.Load(AssemblyName assemblyRef)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.LoadAssembly(String codeBase)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog..ctor(String codeBase)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 32.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 18:06:20.007Z - ServerManager - SharpShell Diagnostics Initialised. Process ServerManager.
+2024-06-23 18:06:20.015Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 18:06:20.027Z - ServerManager - error: System.IO.FileNotFoundException: Die Datei oder Assembly "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+Dateiname: "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+   bei System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   bei System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   bei System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   bei System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeAssembly assembly, RuntimeType caType)
+   bei System.Reflection.RuntimeAssembly.GetCustomAttributes(Type attributeType, Boolean inherit)
+   bei Microsoft.Internal.AttributeServices.GetAttributes[T](ICustomAttributeProvider attributeProvider)
+   bei Microsoft.Internal.AttributeServices.GetFirstAttribute[T](ICustomAttributeProvider attributeProvider)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.get_InnerCatalog()
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.GetExports(ImportDefinition definition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InternalGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InnerCatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.AggregateExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CompositionContainer.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore(Type type, Type metadataViewType, String contractName, ImportCardinality cardinality)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore[T](String contractName)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 27.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 18:09:50.642Z - ServerManager - SharpShell Diagnostics Initialised. Process ServerManager.
+2024-06-23 18:09:50.649Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 18:09:50.659Z - ServerManager - error: System.IO.FileNotFoundException: Die Datei oder Assembly "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+Dateiname: "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+   bei System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   bei System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   bei System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   bei System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeAssembly assembly, RuntimeType caType)
+   bei System.Reflection.RuntimeAssembly.GetCustomAttributes(Type attributeType, Boolean inherit)
+   bei Microsoft.Internal.AttributeServices.GetAttributes[T](ICustomAttributeProvider attributeProvider)
+   bei Microsoft.Internal.AttributeServices.GetFirstAttribute[T](ICustomAttributeProvider attributeProvider)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.get_InnerCatalog()
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.GetExports(ImportDefinition definition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InternalGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InnerCatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.AggregateExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CompositionContainer.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore(Type type, Type metadataViewType, String contractName, ImportCardinality cardinality)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore[T](String contractName)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 27.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 18:09:58.852Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 18:09:58.858Z - ServerManager - error: System.IO.FileNotFoundException: Die Datei oder Assembly "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+Dateiname: "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+   bei System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   bei System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   bei System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   bei System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeAssembly assembly, RuntimeType caType)
+   bei System.Reflection.RuntimeAssembly.GetCustomAttributes(Type attributeType, Boolean inherit)
+   bei Microsoft.Internal.AttributeServices.GetAttributes[T](ICustomAttributeProvider attributeProvider)
+   bei Microsoft.Internal.AttributeServices.GetFirstAttribute[T](ICustomAttributeProvider attributeProvider)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.get_InnerCatalog()
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.GetExports(ImportDefinition definition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InternalGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InnerCatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.AggregateExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CompositionContainer.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore(Type type, Type metadataViewType, String contractName, ImportCardinality cardinality)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore[T](String contractName)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 27.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 18:24:16.131Z - ServerManager - SharpShell Diagnostics Initialised. Process ServerManager.
+2024-06-23 18:24:16.138Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 18:24:16.149Z - ServerManager - error: System.IO.FileNotFoundException: Die Datei oder Assembly "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+Dateiname: "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+   bei System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   bei System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   bei System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   bei System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeAssembly assembly, RuntimeType caType)
+   bei System.Reflection.RuntimeAssembly.GetCustomAttributes(Type attributeType, Boolean inherit)
+   bei Microsoft.Internal.AttributeServices.GetAttributes[T](ICustomAttributeProvider attributeProvider)
+   bei Microsoft.Internal.AttributeServices.GetFirstAttribute[T](ICustomAttributeProvider attributeProvider)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.get_InnerCatalog()
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.GetExports(ImportDefinition definition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InternalGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InnerCatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.AggregateExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CompositionContainer.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore(Type type, Type metadataViewType, String contractName, ImportCardinality cardinality)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore[T](String contractName)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 27.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 18:25:27.291Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 18:25:27.296Z - ServerManager - error: System.BadImageFormatException: Die Datei oder Assembly "SvnPathCopy.SharpShell.comhost.dll" oder eine Abhängigkeit davon wurde nicht gefunden. Im Modul wurde ein Assemblymanifest erwartet.
+Dateiname: "SvnPathCopy.SharpShell.comhost.dll" ---> System.BadImageFormatException: Die Datei oder Assembly "SvnPathCopy.SharpShell.comhost.dll" oder eine Abhängigkeit davon wurde nicht gefunden. Im Modul wurde ein Assemblymanifest erwartet.
+Dateiname: "SvnPathCopy.SharpShell.comhost.dll"
+
+
+   bei System.Reflection.AssemblyName.nGetFileInformation(String s)
+   bei System.Reflection.AssemblyName.GetAssemblyName(String assemblyFile)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.LoadAssembly(String codeBase)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog..ctor(String codeBase)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 32.
+
+
+2024-06-23 18:25:33.922Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 18:25:33.927Z - ServerManager - error: System.IO.FileNotFoundException: Die Datei oder Assembly "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+Dateiname: "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+   bei System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   bei System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   bei System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   bei System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeAssembly assembly, RuntimeType caType)
+   bei System.Reflection.RuntimeAssembly.GetCustomAttributes(Type attributeType, Boolean inherit)
+   bei Microsoft.Internal.AttributeServices.GetAttributes[T](ICustomAttributeProvider attributeProvider)
+   bei Microsoft.Internal.AttributeServices.GetFirstAttribute[T](ICustomAttributeProvider attributeProvider)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.get_InnerCatalog()
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.GetExports(ImportDefinition definition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InternalGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InnerCatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.AggregateExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CompositionContainer.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore(Type type, Type metadataViewType, String contractName, ImportCardinality cardinality)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore[T](String contractName)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 27.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+
+2024-06-23 18:44:44.156Z - ServerManager - SharpShell Diagnostics Initialised. Process ServerManager.
+2024-06-23 18:44:44.163Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 18:44:44.172Z - ServerManager - error: System.BadImageFormatException: Die Datei oder Assembly "SvnPathCopy.SharpShell.comhost.dll" oder eine Abhängigkeit davon wurde nicht gefunden. Im Modul wurde ein Assemblymanifest erwartet.
+Dateiname: "SvnPathCopy.SharpShell.comhost.dll" ---> System.BadImageFormatException: Die Datei oder Assembly "SvnPathCopy.SharpShell.comhost.dll" oder eine Abhängigkeit davon wurde nicht gefunden. Im Modul wurde ein Assemblymanifest erwartet.
+Dateiname: "SvnPathCopy.SharpShell.comhost.dll"
+
+
+   bei System.Reflection.AssemblyName.nGetFileInformation(String s)
+   bei System.Reflection.AssemblyName.GetAssemblyName(String assemblyFile)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.LoadAssembly(String codeBase)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog..ctor(String codeBase)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 32.
+
+
+2024-06-23 18:44:45.178Z - ServerManager - error: ServerManager: Failed to load SharpShell server
+2024-06-23 18:44:45.183Z - ServerManager - error: System.IO.FileNotFoundException: Die Datei oder Assembly "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+Dateiname: "System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
+   bei System.ModuleHandle.ResolveType(RuntimeModule module, Int32 typeToken, IntPtr* typeInstArgs, Int32 typeInstCount, IntPtr* methodInstArgs, Int32 methodInstCount, ObjectHandleOnStack type)
+   bei System.ModuleHandle.ResolveTypeHandleInternal(RuntimeModule module, Int32 typeToken, RuntimeTypeHandle[] typeInstantiationContext, RuntimeTypeHandle[] methodInstantiationContext)
+   bei System.Reflection.RuntimeModule.ResolveType(Int32 metadataToken, Type[] genericTypeArguments, Type[] genericMethodArguments)
+   bei System.Reflection.CustomAttribute.FilterCustomAttributeRecord(CustomAttributeRecord caRecord, MetadataImport scope, Assembly& lastAptcaOkAssembly, RuntimeModule decoratedModule, MetadataToken decoratedToken, RuntimeType attributeFilterType, Boolean mustBeInheritable, Object[] attributes, IList derivedAttributes, RuntimeType& attributeType, IRuntimeMethodInfo& ctor, Boolean& ctorHasParameters, Boolean& isVarArg)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeModule decoratedModule, Int32 decoratedMetadataToken, Int32 pcaCount, RuntimeType attributeFilterType, Boolean mustBeInheritable, IList derivedAttributes, Boolean isDecoratedTargetSecurityTransparent)
+   bei System.Reflection.CustomAttribute.GetCustomAttributes(RuntimeAssembly assembly, RuntimeType caType)
+   bei System.Reflection.RuntimeAssembly.GetCustomAttributes(Type attributeType, Boolean inherit)
+   bei Microsoft.Internal.AttributeServices.GetAttributes[T](ICustomAttributeProvider attributeProvider)
+   bei Microsoft.Internal.AttributeServices.GetFirstAttribute[T](ICustomAttributeProvider attributeProvider)
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.get_InnerCatalog()
+   bei System.ComponentModel.Composition.Hosting.AssemblyCatalog.GetExports(ImportDefinition definition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InternalGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.InnerCatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CatalogExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.AggregateExportProvider.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExports(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.CompositionContainer.GetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.TryGetExportsCore(ImportDefinition definition, AtomicComposition atomicComposition, IEnumerable`1& exports)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExports(ImportDefinition definition, AtomicComposition atomicComposition)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore(Type type, Type metadataViewType, String contractName, ImportCardinality cardinality)
+   bei System.ComponentModel.Composition.Hosting.ExportProvider.GetExportsCore[T](String contractName)
+   bei ServerManager.ServerManagerApi.LoadServers(String path) in C:\projects\sharpshell\SharpShell\Tools\ServerManager\ServerManagerApi.cs:Zeile 27.
+
+WRN: Protokollierung der Assemblybindung ist AUS.
+Sie können die Protokollierung der Assemblybindungsfehler aktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] (DWORD) auf 1 festlegen.
+Hinweis: Die Protokollierung der Assemblybindungsfehler führt zu einer gewissen Leistungseinbuße.
+Sie können dieses Feature deaktivieren, indem Sie den Registrierungswert [HKLM\Software\Microsoft\Fusion!EnableLog] entfernen.
+

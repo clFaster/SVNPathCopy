@@ -4,8 +4,6 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SvnPathCopy.SharpShell", "SvnPathCopy.SharpShell\SvnPathCopy.SharpShell.csproj", "{ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0965}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SvnPathCopy.BusinessLogic", "SvnPathCopy.BusinessLogic\SvnPathCopy.BusinessLogic.csproj", "{3013894E-02B5-4394-8BB2-6A0B62573764}"
-EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SvnPathCopy.Installer", "SvnPathCopy.Installer\SvnPathCopy.Installer.vdproj", "{6DA746A7-D6B0-47E4-8DC3-CD8462BFF065}"
 EndProject
 Global
@@ -18,10 +16,6 @@ Global
 		{ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0965}.Debug|Any CPU.Build.0 = Release|Any CPU
 		{ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0965}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0965}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3013894E-02B5-4394-8BB2-6A0B62573764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3013894E-02B5-4394-8BB2-6A0B62573764}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3013894E-02B5-4394-8BB2-6A0B62573764}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3013894E-02B5-4394-8BB2-6A0B62573764}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6DA746A7-D6B0-47E4-8DC3-CD8462BFF065}.Debug|Any CPU.ActiveCfg = Debug
 		{6DA746A7-D6B0-47E4-8DC3-CD8462BFF065}.Debug|Any CPU.Build.0 = Debug
 		{6DA746A7-D6B0-47E4-8DC3-CD8462BFF065}.Release|Any CPU.ActiveCfg = Release

@@ -1,0 +1,48 @@
+2024-06-23 17:35:35.455Z - ServerRegistrationManager - SharpShell Diagnostics Initialised. Process ServerRegistrationManager.
+2024-06-23 17:35:35.467Z - ServerRegistrationManager - Started the Server Registration Manager.
+2024-06-23 17:35:35.476Z - ServerRegistrationManager - RegAsm: preparing to run C:\Windows\Microsoft.Net\Framework64\v4.0.30319\regasm.exe /codebase "..\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.dll"
+2024-06-23 17:35:35.540Z - ServerRegistrationManager - RegAsm: exited with code 100
+2024-06-23 17:35:35.546Z - ServerRegistrationManager - RegAsm: Output: Microsoft .NET Framework Assembly Registration Utility 4.8.9032.0
+für Microsoft .NET Framework, Version 4.8.9032.0
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+
+2024-06-23 17:35:35.552Z - ServerRegistrationManager - RegAsm: Error Output: RegAsm : error RA0000 : Die Datei oder Assembly "SharpShell, Version=2.7.2.0, Culture=neutral, PublicKeyToken=f14dc899472fe6fb" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+
+2024-06-23 17:35:35.558Z - ServerRegistrationManager - error:     ..\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.dll failed to register.
+2024-06-23 17:38:47.423Z - ServerRegistrationManager - SharpShell Diagnostics Initialised. Process ServerRegistrationManager.
+2024-06-23 17:38:47.434Z - ServerRegistrationManager - Started the Server Registration Manager.
+2024-06-23 17:38:47.443Z - ServerRegistrationManager - RegAsm: preparing to run C:\Windows\Microsoft.Net\Framework64\v4.0.30319\regasm.exe /codebase "..\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.dll"
+2024-06-23 17:38:47.509Z - ServerRegistrationManager - RegAsm: exited with code 100
+2024-06-23 17:38:47.516Z - ServerRegistrationManager - RegAsm: Output: Microsoft .NET Framework Assembly Registration Utility 4.8.9032.0
+für Microsoft .NET Framework, Version 4.8.9032.0
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+
+2024-06-23 17:38:47.521Z - ServerRegistrationManager - RegAsm: Error Output: RegAsm : error RA0000 : Die Datei oder Assembly "SharpShell, Version=2.7.2.0, Culture=neutral, PublicKeyToken=f14dc899472fe6fb" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+
+2024-06-23 17:38:47.527Z - ServerRegistrationManager - error:     ..\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.dll failed to register.
+2024-06-23 18:41:29.411Z - ServerRegistrationManager - SharpShell Diagnostics Initialised. Process ServerRegistrationManager.
+2024-06-23 18:41:29.419Z - ServerRegistrationManager - Started the Server Registration Manager.
+2024-06-23 18:41:29.426Z - ServerRegistrationManager - RegAsm: preparing to run C:\Windows\Microsoft.Net\Framework64\v4.0.30319\regasm.exe /u "..\..\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.dll"
+2024-06-23 18:41:29.491Z - ServerRegistrationManager - RegAsm: exited with code 100
+2024-06-23 18:41:29.495Z - ServerRegistrationManager - RegAsm: Output: Microsoft .NET Framework Assembly Registration Utility 4.8.9032.0
+für Microsoft .NET Framework, Version 4.8.9032.0
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+
+2024-06-23 18:41:29.498Z - ServerRegistrationManager - RegAsm: Error Output: RegAsm : error RA0000 : Die Datei oder Assembly "System.Windows.Forms, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" oder eine Abhängigkeit davon wurde nicht gefunden. Das System kann die angegebene Datei nicht finden.
+
+2024-06-23 18:41:29.502Z - ServerRegistrationManager - error:     ..\..\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.dll failed to uninstall.
+2024-06-23 18:41:46.638Z - ServerRegistrationManager - SharpShell Diagnostics Initialised. Process ServerRegistrationManager.
+2024-06-23 18:41:46.645Z - ServerRegistrationManager - Started the Server Registration Manager.
+2024-06-23 18:41:46.652Z - ServerRegistrationManager - RegAsm: preparing to run C:\Windows\Microsoft.Net\Framework64\v4.0.30319\regasm.exe /u "..\..\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.comhost.dll"
+2024-06-23 18:41:46.710Z - ServerRegistrationManager - RegAsm: exited with code 100
+2024-06-23 18:41:46.714Z - ServerRegistrationManager - RegAsm: Output: Microsoft .NET Framework Assembly Registration Utility 4.8.9032.0
+für Microsoft .NET Framework, Version 4.8.9032.0
+Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
+
+
+2024-06-23 18:41:46.718Z - ServerRegistrationManager - RegAsm: Error Output: RegAsm : error RA0000 : "C:\Users\reism\source\repos\SVNPathCopy\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.comhost.dll" konnte nicht geladen werden, da es sich nicht um eine gültige .NET-Assembly handelt.
+
+2024-06-23 18:41:46.722Z - ServerRegistrationManager - error:     ..\..\SvnPathCopy.SharpShell\bin\Release\net8.0-windows\SvnPathCopy.SharpShell.comhost.dll failed to uninstall.
