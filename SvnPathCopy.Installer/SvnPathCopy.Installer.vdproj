@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:InstallerSVNPathCopy"
+"ProjectName" = "8:SvnPathCopy.Installer"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -21,86 +21,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6A23F80EDB11BFA84F9416E30720ECD6"
-        "OwnerKey" = "8:_B0F99E4BC14E4535BD216868CF94526D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_713AD231A8D30CF4FF73F898470823E7"
-        "OwnerKey" = "8:_B0F99E4BC14E4535BD216868CF94526D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_713AD231A8D30CF4FF73F898470823E7"
-        "OwnerKey" = "8:_C124AFF803D144DF8470C69D11049402"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B0F99E4BC14E4535BD216868CF94526D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_BC6EFC32FA654489BA74C1F4E06C133C"
-        "OwnerKey" = "8:_B0F99E4BC14E4535BD216868CF94526D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_C124AFF803D144DF8470C69D11049402"
         "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C6FE8C86760069F47B0B3D97C7DB067D"
-        "OwnerKey" = "8:_B0F99E4BC14E4535BD216868CF94526D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C6FE8C86760069F47B0B3D97C7DB067D"
-        "OwnerKey" = "8:_BC6EFC32FA654489BA74C1F4E06C133C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B0F99E4BC14E4535BD216868CF94526D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C124AFF803D144DF8470C69D11049402"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BC6EFC32FA654489BA74C1F4E06C133C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C6FE8C86760069F47B0B3D97C7DB067D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_713AD231A8D30CF4FF73F898470823E7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_6A23F80EDB11BFA84F9416E30720ECD6"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -111,7 +39,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\InstallerSVNPathCopy.msi"
+        "OutputFilename" = "8:Debug\\SvnPathCopy.Installer.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -143,7 +71,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\InstallerSVNPathCopy.msi"
+        "OutputFilename" = "8:Release\\SvnPathCopy.Installer.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -182,7 +110,7 @@
             "Object" = "8:_C124AFF803D144DF8470C69D11049402"
             "FileType" = "3:2"
             "InstallAction" = "3:4"
-            "Arguments" = "8:uninstall \"[TARGETDIR]\\SVNPathCopy.dll\""
+            "Arguments" = "8:uninstall \"[TARGETDIR]\\SvnPathCopy.SharpShell.dll\""
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
             "Identifier" = "8:_FB05AD03_4C59_41AB_A815_5A9C4B79CDEA"
@@ -196,7 +124,7 @@
             "Object" = "8:_C124AFF803D144DF8470C69D11049402"
             "FileType" = "3:2"
             "InstallAction" = "3:1"
-            "Arguments" = "8:install \"[TARGETDIR]\\SVNPathCopy.dll\" -codebase"
+            "Arguments" = "8:install \"[TARGETDIR]\\SvnPathCopy.SharpShell.dll\" -codebase"
             "EntryPoint" = "8:"
             "Sequence" = "3:1"
             "Identifier" = "8:_079BDC32_9514_4119_84A6_8000042ADDD9"
@@ -214,11 +142,21 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_0E345E10084944F3A6CCABBF1C4C21EE"
+                {
+                "Name" = "8:.NET Core"
+                "Message" = "8:[VSDNETCOREMSG]"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:https://dotnet.microsoft.com/download/dotnet-core/[NetCoreVerMajorDotMinor]"
+                "IsNETCore" = "11:TRUE"
+                "Architecture" = "2:0"
+                "Runtime" = "2:0"
+                }
                 "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_35A345148A23436388D67DD30D348248"
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:.NETFramework,Version=v4.6.1"
+                "FrameworkVersion" = "8:v4.6.1"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
                 }
@@ -246,99 +184,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6A23F80EDB11BFA84F9416E30720ECD6"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
-                "ScatterAssemblies"
-                {
-                    "_6A23F80EDB11BFA84F9416E30720ECD6"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:System.Net.Http.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_065CDE4392CE4D18ACD7DB426375A155"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_713AD231A8D30CF4FF73F898470823E7"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpShell, Version=2.7.1.0, Culture=neutral, PublicKeyToken=f14dc899472fe6fb, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_713AD231A8D30CF4FF73F898470823E7"
-                    {
-                    "Name" = "8:SharpShell.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SharpShell.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_065CDE4392CE4D18ACD7DB426375A155"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BC6EFC32FA654489BA74C1F4E06C133C"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpSvn.UI, Version=1.8019.4006.503, Culture=neutral, PublicKeyToken=33789aa53ca44aa9, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_BC6EFC32FA654489BA74C1F4E06C133C"
-                    {
-                    "Name" = "8:SharpSvn.UI.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SharpSvn.UI.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_065CDE4392CE4D18ACD7DB426375A155"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C124AFF803D144DF8470C69D11049402"
             {
             "AssemblyRegister" = "3:1"
@@ -346,13 +191,8 @@
             "AssemblyAsmDisplayName" = "8:ServerRegistrationManager, Version=2.7.1.0, Culture=neutral, PublicKeyToken=68bd4561cc3495fc, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_C124AFF803D144DF8470C69D11049402"
-                    {
-                    "Name" = "8:ServerRegistrationManager.exe"
-                    "Attributes" = "3:512"
-                    }
                 }
-            "SourcePath" = "8:..\\..\\..\\ServerRegistrationManager\\ServerRegistrationManager.exe"
+            "SourcePath" = "8:.\\..\\tools\\ServerRegistrationManager.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_065CDE4392CE4D18ACD7DB426375A155"
@@ -368,42 +208,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C6FE8C86760069F47B0B3D97C7DB067D"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:SharpSvn, Version=1.8019.4006.503, Culture=neutral, PublicKeyToken=d729672594885a28, processorArchitecture=AMD64"
-                "ScatterAssemblies"
-                {
-                    "_5435B0C6918A34491F5EFE86DF87C90B"
-                    {
-                    "Name" = "8:SharpPlink-x64.svnExe"
-                    "Attributes" = "3:1"
-                    }
-                    "_C6FE8C86760069F47B0B3D97C7DB067D"
-                    {
-                    "Name" = "8:SharpSvn.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:SharpSvn.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_065CDE4392CE4D18ACD7DB426375A155"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
         }
@@ -1031,7 +835,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B0F99E4BC14E4535BD216868CF94526D"
             {
-            "SourcePath" = "8:..\\SVNPathCopy\\obj\\Release\\SVNPathCopy.dll"
+            "SourcePath" = "8:..\\SvnPathCopy.SharpShell\\obj\\Release\\net8.0-windows\\SvnPathCopy.SharpShell.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_065CDE4392CE4D18ACD7DB426375A155"

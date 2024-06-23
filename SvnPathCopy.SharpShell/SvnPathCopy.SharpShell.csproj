@@ -16,10 +16,11 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>svn_path_copy.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>SvnPathCopy.SharpShell.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="ServerRegistrationManager" Version="2.7.2" />
     <PackageReference Include="SharpShell" Version="2.7.2" />
     <PackageReference Include="SharpSvn.1.8-x64" Version="1.8019.4006.503" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />

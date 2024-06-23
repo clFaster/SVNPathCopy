@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using System.Web;
 using System.IO;
 
-namespace SVNPathCopy;
+namespace SvnPathCopy.SharpShell;
 
 [ComVisible(true)]
 [COMServerAssociation(AssociationType.AllFilesAndFolders)]
