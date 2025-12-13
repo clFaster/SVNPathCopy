@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Directory structure for SVN Path Copy installation
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <Fragment>
+
+        <StandardDirectory Id="ProgramFiles64Folder">
+            <Directory Id="INSTALLFOLDER" Name="SVN Path Copy">
+                <Directory Id="ShellExtensionFolder" Name="ShellExtension"/>
+            </Directory>
+        </StandardDirectory>
+
+        <!-- Start Menu shortcuts -->
+        <StandardDirectory Id="ProgramMenuFolder">
+            <Directory Id="ApplicationProgramsFolder" Name="SVN Path Copy"/>
+        </StandardDirectory>
+
+        <!-- Desktop shortcuts directory -->
+        <StandardDirectory Id="DesktopFolder"/>
+
+    </Fragment>
+</Wix>

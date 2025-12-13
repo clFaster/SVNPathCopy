@@ -1,0 +1,265 @@
+<Window x:Class="SVNPathCopy.Configuration.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:SVNPathCopy.Configuration.ViewModels"
+        mc:Ignorable="d"
+        Title="SVN Path Copy - Configuration"
+        Height="600" Width="500"
+        MinHeight="500" MinWidth="400"
+        Background="{StaticResource BackgroundBrush}"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanResizeWithGrip">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto" Padding="24">
+            <StackPanel>
+                <!-- Header -->
+                <StackPanel Margin="0,0,0,24">
+                    <TextBlock Text="SVN Path Copy"
+                               FontSize="28"
+                               FontWeight="SemiBold"
+                               Foreground="{StaticResource TextPrimaryBrush}" />
+                    <TextBlock Text="Configure your Windows Explorer context menu extension"
+                               FontSize="14"
+                               Foreground="{StaticResource TextSecondaryBrush}"
+                               Margin="0,4,0,0" />
+                </StackPanel>
+
+                <!-- Status Card -->
+                <Border Style="{StaticResource CardStyle}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+                            <TextBlock Text="Extension Status"
+                                       FontSize="16"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextPrimaryBrush}" />
+                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                <Ellipse Width="10" Height="10"
+                                         Fill="{Binding IsEnabled, Converter={StaticResource BoolToColorConverter}, FallbackValue={StaticResource SuccessBrush}}"
+                                         Margin="0,0,8,0" />
+                                <TextBlock Text="{Binding StatusText}"
+                                           FontSize="14"
+                                           Foreground="{StaticResource TextSecondaryBrush}" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <CheckBox Grid.Column="1"
+                                  Style="{StaticResource ToggleSwitchStyle}"
+                                  IsChecked="{Binding ExtensionEnabled}"
+                                  VerticalAlignment="Center" />
+                    </Grid>
+                </Border>
+
+                <!-- Menu Options Card -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Context Menu Options"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                   Margin="0,0,0,16" />
+
+                        <CheckBox Content="Show 'Copy SVN URL with Revision'"
+                                  IsChecked="{Binding ShowCopyWithRevision}"
+                                  Margin="0,0,0,12"
+                                  IsEnabled="{Binding ExtensionEnabled}" />
+
+                        <CheckBox Content="Show 'Copy SVN URL' (without revision)"
+                                  IsChecked="{Binding ShowCopyWithoutRevision}"
+                                  IsEnabled="{Binding ExtensionEnabled}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Advanced Settings Card -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Advanced Settings"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                   Margin="0,0,0,16" />
+
+                        <TextBlock Text="URL Encoding Style"
+                                   FontSize="14"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   Margin="0,0,0,8" />
+
+                        <ComboBox ItemsSource="{Binding EncodingStyles}"
+                                  SelectedItem="{Binding SelectedEncodingStyle}"
+                                  IsEnabled="{Binding ExtensionEnabled}"
+                                  Padding="8,6"
+                                  Width="200"
+                                  HorizontalAlignment="Left" />
+
+                        <TextBlock Text="Controls how special characters in URLs are encoded"
+                                   FontSize="12"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   Margin="0,8,0,0" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Shell Extension Status Card -->
+                <Border Style="{StaticResource CardStyle}">
+                    <StackPanel>
+                        <TextBlock Text="Shell Extension Management"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="{StaticResource TextPrimaryBrush}"
+                                   Margin="0,0,0,12" />
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+                            <Ellipse Width="10" Height="10"
+                                     Margin="0,0,8,0">
+                                <Ellipse.Style>
+                                    <Style TargetType="Ellipse">
+                                        <Setter Property="Fill" Value="{StaticResource ErrorBrush}" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsShellExtensionRegistered}" Value="True">
+                                                <Setter Property="Fill" Value="{StaticResource SuccessBrush}" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Ellipse.Style>
+                            </Ellipse>
+                            <TextBlock FontSize="14" Foreground="{StaticResource TextSecondaryBrush}">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Text" Value="Shell extension is not installed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsShellExtensionRegistered}" Value="True">
+                                                <Setter Property="Text" Value="Shell extension is installed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </StackPanel>
+
+                        <TextBlock Text="Install the shell extension to enable context menu items in Windows Explorer. Requires administrator privileges."
+                                   FontSize="12"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,8" />
+
+                        <TextBlock FontSize="11"
+                                   Foreground="{StaticResource TextSecondaryBrush}"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,16">
+                            <Run Text="Assembly path: " FontWeight="SemiBold" />
+                            <Run Text="{Binding ShellExtensionPath, Mode=OneWay}" />
+                        </TextBlock>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Button Grid.Column="0"
+                                    Content="Install"
+                                    Command="{Binding InstallShellExtensionCommand}"
+                                    Style="{StaticResource PrimaryButtonStyle}"
+                                    Margin="0,0,12,0"
+                                    IsEnabled="{Binding IsProcessing, Converter={StaticResource InverseBoolConverter}}">
+                                <Button.Visibility>
+                                    <MultiBinding Converter="{StaticResource MultiBoolToVisibilityConverter}">
+                                        <Binding Path="IsShellExtensionRegistered" Converter="{StaticResource InverseBoolConverter}" />
+                                        <Binding Path="IsProcessing" Converter="{StaticResource InverseBoolConverter}" />
+                                    </MultiBinding>
+                                </Button.Visibility>
+                            </Button>
+
+                            <Button Grid.Column="1"
+                                    Content="Uninstall"
+                                    Command="{Binding UninstallShellExtensionCommand}"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    Margin="0,0,12,0"
+                                    IsEnabled="{Binding IsProcessing, Converter={StaticResource InverseBoolConverter}}">
+                                <Button.Visibility>
+                                    <MultiBinding Converter="{StaticResource MultiBoolToVisibilityConverter}">
+                                        <Binding Path="IsShellExtensionRegistered" />
+                                        <Binding Path="IsProcessing" Converter="{StaticResource InverseBoolConverter}" />
+                                    </MultiBinding>
+                                </Button.Visibility>
+                            </Button>
+
+                            <Button Grid.Column="2"
+                                    Content="Refresh Status"
+                                    Command="{Binding RefreshStatusCommand}"
+                                    Style="{StaticResource SecondaryButtonStyle}"
+                                    IsEnabled="{Binding IsProcessing, Converter={StaticResource InverseBoolConverter}}" />
+
+                            <StackPanel Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        Orientation="Horizontal"
+                                        Visibility="{Binding IsProcessing, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <TextBlock Text="Processing..."
+                                           FontSize="14"
+                                           Foreground="{StaticResource TextSecondaryBrush}"
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Status Message at bottom of window -->
+        <Border Grid.Row="1"
+                Background="{StaticResource CardBrush}"
+                BorderBrush="{StaticResource BorderBrush}"
+                BorderThickness="0,1,0,0"
+                Padding="24,10"
+                HorizontalAlignment="Stretch"
+                Visibility="{Binding StatusMessage, Converter={StaticResource StringToVisibilityConverter}, FallbackValue=Collapsed}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0"
+                        Width="4"
+                        Height="18"
+                        CornerRadius="2"
+                        VerticalAlignment="Center"
+                        Margin="0,0,12,0">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Setter Property="Background" Value="{StaticResource SuccessBrush}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsStatusError}" Value="True">
+                                    <Setter Property="Background" Value="{StaticResource ErrorBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                </Border>
+
+                <TextBlock Grid.Column="1"
+                           Text="{Binding StatusMessage}"
+                           FontSize="12"
+                           Foreground="{StaticResource TextSecondaryBrush}"
+                           VerticalAlignment="Center"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

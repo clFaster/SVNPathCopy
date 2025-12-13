@@ -1,0 +1,29 @@
+<Project>
+
+    <!-- Common properties for all projects -->
+    <PropertyGroup>
+        <LangVersion>latest</LangVersion>
+        <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);CS1591</NoWarn> <!-- Missing XML comment for publicly visible type -->
+    </PropertyGroup>
+
+    <!-- Package metadata -->
+    <PropertyGroup>
+        <Authors>clFaster</Authors>
+        <Company>SVNPathCopy</Company>
+        <Copyright>Copyright © 2019-2024 clFaster</Copyright>
+        <RepositoryUrl>https://github.com/clFaster/SVNPathCopy</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+    </PropertyGroup>
+
+    <!-- Version information -->
+    <PropertyGroup>
+        <VersionPrefix>2.0.0</VersionPrefix>
+        <AssemblyVersion>2.0.0.0</AssemblyVersion>
+        <FileVersion>2.0.0.0</FileVersion>
+    </PropertyGroup>
+
+</Project>

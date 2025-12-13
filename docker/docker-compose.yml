@@ -1,0 +1,19 @@
+services:
+  svn-server:
+    image: garethflowers/svn-server
+    container_name: svn-server
+    ports:
+      - "3690:3690"    # SVN protocol
+    volumes:
+      - svn-repos:/var/opt/svn
+      - ./init-svn-server.sh:/init-svn-server.sh:ro
+    environment:
+      - REPO_NAME=testrepo
+      - SVN_USER=svnadmin
+      - SVN_PASS=svnadmin
+    command: ["sh", "/init-svn-server.sh"]
+    restart: unless-stopped
+
+volumes:
+  svn-repos:
+    driver: local

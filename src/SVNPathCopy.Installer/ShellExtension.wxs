@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Shell Extension components with COM registration using regasm
+  
+  COM Registration Strategy:
+  - Use regasm.exe from .NET Framework 4.0 (included in Windows 10/11)
+  - Register with /codebase flag for side-by-side deployment
+  - Deferred custom actions run elevated for HKLM registry access
+  - SetProperty passes properties to deferred actions via CustomActionData
+  
+  Silent Installation:
+  - msiexec /i SVNPathCopy-2.0.0.msi /qn           (completely silent)
+  - msiexec /i SVNPathCopy-2.0.0.msi /qb           (basic UI, progress bar only)
+  - msiexec /x SVNPathCopy-2.0.0.msi /qn           (silent uninstall)
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+    <Fragment>
+
+        <!-- Set properties for deferred custom actions (must happen in immediate phase) -->
+        <SetProperty Id="RegisterShellExtension"
+                     Value="&quot;[WindowsFolder]Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe&quot; &quot;[ShellExtensionFolder]SVNPathCopy.ShellExtension.dll&quot; /codebase"
+                     Before="RegisterShellExtension"
+                     Sequence="execute"/>
+
+        <SetProperty Id="UnregisterShellExtension"
+                     Value="&quot;[WindowsFolder]Microsoft.NET\Framework64\v4.0.30319\RegAsm.exe&quot; &quot;[ShellExtensionFolder]SVNPathCopy.ShellExtension.dll&quot; /unregister"
+                     Before="UnregisterShellExtension"
+                     Sequence="execute"/>
+
+        <!-- Register COM server (deferred, elevated) -->
+        <CustomAction Id="RegisterShellExtension"
+                      Execute="deferred"
+                      Impersonate="no"
+                      BinaryRef="Wix4UtilCA_X64"
+                      DllEntry="WixQuietExec64"
+                      Return="ignore"/>
+
+        <!-- Unregister COM server (deferred, elevated) -->
+        <CustomAction Id="UnregisterShellExtension"
+                      Execute="deferred"
+                      Impersonate="no"
+                      BinaryRef="Wix4UtilCA_X64"
+                      DllEntry="WixQuietExec64"
+                      Return="ignore"/>
+
+        <!-- Schedule custom actions -->
+        <InstallExecuteSequence>
+            <!-- Register after files are installed (fresh install or repair) -->
+            <Custom Action="RegisterShellExtension" After="InstallFiles" Condition="NOT REMOVE"/>
+
+            <!-- Unregister before files are removed (uninstall or upgrade) -->
+            <Custom Action="UnregisterShellExtension" Before="RemoveFiles" Condition="REMOVE=&quot;ALL&quot; OR WIX_UPGRADE_DETECTED"/>
+        </InstallExecuteSequence>
+
+        <ComponentGroup Id="ShellExtensionComponents" Directory="ShellExtensionFolder">
+
+            <!-- Shell Extension DLL -->
+            <Component Id="ShellExtensionDll" Guid="D4E5F6A7-B8C9-0123-DEF1-234567890124">
+                <File Id="ShellExtensionFile"
+                      Source="$(var.SVNPathCopy.ShellExtension.TargetDir)SVNPathCopy.ShellExtension.dll"
+                      KeyPath="yes"/>
+
+                <!-- Shell extension approval in registry -->
+                <RegistryValue Root="HKLM"
+                               Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved"
+                               Name="{ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0965}"
+                               Value="SVN Path Copy"
+                               Type="string"/>
+
+                <!-- Context menu handler for all files -->
+                <RegistryKey Root="HKCR" Key="*\shellex\ContextMenuHandlers\SVNPathCopy">
+                    <RegistryValue Type="string" Value="{ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0965}"/>
+                </RegistryKey>
+
+                <!-- Context menu handler for folders -->
+                <RegistryKey Root="HKCR" Key="Directory\shellex\ContextMenuHandlers\SVNPathCopy">
+                    <RegistryValue Type="string" Value="{ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0965}"/>
+                </RegistryKey>
+
+                <!-- Context menu handler for directory background -->
+                <RegistryKey Root="HKCR" Key="Directory\Background\shellex\ContextMenuHandlers\SVNPathCopy">
+                    <RegistryValue Type="string" Value="{ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0965}"/>
+                </RegistryKey>
+            </Component>
+
+            <!-- SharpShell dependency -->
+            <Component Id="SharpShellDll" Guid="F6A7B8C9-D0E1-2345-F123-456789012346">
+                <File Id="SharpShellFile"
+                      Source="$(var.SVNPathCopy.ShellExtension.TargetDir)SharpShell.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- SharpSvn dependencies -->
+            <Component Id="SharpSvnDll" Guid="A7B8C9D0-E1F2-3456-0123-567890123457">
+                <File Id="SharpSvnFile"
+                      Source="$(var.SVNPathCopy.ShellExtension.TargetDir)SharpSvn.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- SharpSvn UI -->
+            <Component Id="SharpSvnUiDll" Guid="01234567-89AB-CDEF-0123-456789ABCDEF">
+                <File Id="SharpSvnUiFile"
+                      Source="$(var.SVNPathCopy.ShellExtension.TargetDir)SharpSvn.UI.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- Microsoft.Win32.Registry -->
+            <Component Id="Win32RegistryDll" Guid="12345678-9ABC-DEF0-1234-56789ABCDEF0">
+                <File Id="Win32RegistryFile"
+                      Source="$(var.SVNPathCopy.ShellExtension.TargetDir)Microsoft.Win32.Registry.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- System.Security.AccessControl -->
+            <Component Id="SecurityAccessControlDll" Guid="23456789-ABCD-EF01-2345-6789ABCDEF01">
+                <File Id="SecurityAccessControlFile"
+                      Source="$(var.SVNPathCopy.ShellExtension.TargetDir)System.Security.AccessControl.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- System.Security.Principal.Windows -->
+            <Component Id="SecurityPrincipalDll" Guid="3456789A-BCDE-F012-3456-789ABCDEF012">
+                <File Id="SecurityPrincipalFile"
+                      Source="$(var.SVNPathCopy.ShellExtension.TargetDir)System.Security.Principal.Windows.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- Core library for shell extension -->
+            <Component Id="ShellExtensionCore" Guid="B8C9D0E1-F2A3-4567-1234-678901234568">
+                <File Id="ShellExtensionCoreFile"
+                      Source="$(var.SVNPathCopy.ShellExtension.TargetDir)SVNPathCopy.Core.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- Application settings registry keys -->
+            <Component Id="DefaultSettings" Guid="C9D0E1F2-A3B4-5678-2345-789012345679">
+                <RegistryKey Root="HKCU" Key="SOFTWARE\SVNPathCopy">
+                    <RegistryValue Name="Enabled" Type="integer" Value="1"/>
+                    <RegistryValue Name="ShowCopyWithRevision" Type="integer" Value="1"/>
+                    <RegistryValue Name="ShowCopyWithoutRevision" Type="integer" Value="1"/>
+                    <RegistryValue Name="UrlEncodingStyle" Type="string" Value="Path"/>
+                </RegistryKey>
+                <!-- Remove registry keys on uninstall -->
+                <RemoveRegistryKey Root="HKCU" Key="SOFTWARE\SVNPathCopy" Action="removeOnUninstall"/>
+            </Component>
+            
+            <!-- Installer registry cleanup on uninstall -->
+            <Component Id="InstallerRegistryCleanup" Guid="D0E1F2A3-B4C5-6789-3456-890123456780">
+                <RegistryValue Root="HKCU"
+                               Key="Software\SVNPathCopy\Installer"
+                               Name="Installed"
+                               Type="integer"
+                               Value="1"
+                               KeyPath="yes"/>
+                <!-- Remove installer registry keys on uninstall -->
+                <RemoveRegistryKey Root="HKCU" Key="Software\SVNPathCopy\Installer" Action="removeOnUninstall"/>
+            </Component>
+
+        </ComponentGroup>
+
+    </Fragment>
+</Wix>

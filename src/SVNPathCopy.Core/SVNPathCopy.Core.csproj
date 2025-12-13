@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>SVNPathCopy.Core</RootNamespace>
+        <AssemblyName>SVNPathCopy.Core</AssemblyName>
+        <Version>2.0.0</Version>
+        <Authors>Moritz Reis</Authors>
+        <Description>Core library for SVNPathCopy - shared interfaces and services</Description>
+        <Copyright>Copyright © 2025</Copyright>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0"/>
+    </ItemGroup>
+
+</Project>
