@@ -3,5 +3,8 @@ version = 1
 [[analyzers]]
 name = "csharp"
 
+[[analyzers]]
+name = "test-coverage"
+
 [[transformers]]
 name = "dotnet-format"
