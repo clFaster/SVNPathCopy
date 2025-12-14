@@ -43,7 +43,7 @@ jobs:
         run: dotnet build tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-restore
 
       - name: Run Tests with Coverage
-        run: dotnet test tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage"
+        run: dotnet test tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-build --verbosity normal --results-directory tests/SVNPathCopy.Tests/TestResults --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage"
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -53,15 +53,31 @@ jobs:
           path: tests/SVNPathCopy.Tests/TestResults/*.trx
 
       - name: DeepSource Code Coverage
-        if: success()
+        if: success() && env.DEEPSOURCE_DSN != ''
+        shell: pwsh
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
         run: |
-          # Install DeepSource CLI
+          # Install DeepSource CLI (drops ./bin/deepsource.exe on Windows)
           curl https://deepsource.io/cli | sh
 
-          # Find and report coverage files
-          find tests/SVNPathCopy.Tests/TestResults -name "*.xml" -type f -exec ./bin/deepsource report --analyzer test-coverage --key csharp --value-file {} \;
-        env:
-          DEEPSOURCE_DSN: ${{ vars.DEEPSOURCE_DSN }}
+          $coverageRoot = "tests/SVNPathCopy.Tests/TestResults"
+          if (-not (Test-Path $coverageRoot)) {
+            throw "Coverage results directory not found: $coverageRoot"
+          }
+
+          # dotnet test --collect:"XPlat Code Coverage" produces Cobertura at coverage.cobertura.xml
+          $coverageFiles = Get-ChildItem -Path $coverageRoot -Recurse -File -Filter "coverage.cobertura.xml"
+          if (-not $coverageFiles -or $coverageFiles.Count -eq 0) {
+            Write-Host "No coverage.cobertura.xml found under $coverageRoot. Directory contents:";
+            Get-ChildItem -Path $coverageRoot -Recurse | Select-Object FullName | Format-Table -AutoSize | Out-String | Write-Host
+            throw "No coverage files found."
+          }
+
+          foreach ($file in $coverageFiles) {
+            Write-Host "Reporting coverage: $($file.FullName)"
+            ./bin/deepsource.exe report --analyzer test-coverage --key csharp --value-file "$($file.FullName)"
+          }
 
   build-installer:
     name: Build Installer
