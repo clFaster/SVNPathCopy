@@ -48,7 +48,7 @@ jobs:
         run: dotnet test tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-build --verbosity normal --results-directory tests/SVNPathCopy.Tests/TestResults --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage"
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: always()
         with:
           name: test-results
@@ -114,7 +114,7 @@ jobs:
         run: dotnet build src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj --configuration Release --no-restore
 
       - name: Upload MSI artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: SVNPathCopy-Installer
           path: src/SVNPathCopy.Installer/bin/x64/Release/*.msi
