@@ -1,4 +1,4 @@
-# SVN Path Copy
+# SVN Path Copy <img src="docs/SVNPathCopy-Icon.png" alt="StatusSwift Logo" width="30" height="30" style="vertical-align: middle;"/>
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com/)
