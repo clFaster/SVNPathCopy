@@ -2,6 +2,8 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![.NET](https://img.shields.io/badge/.NET-10.0-purple.svg)](https://dotnet.microsoft.com/)
+[![DeepSource](https://app.deepsource.com/gh/clFaster/SVNPathCopy.svg/?label=active+issues&show_trend=true&token=RiaId6Kpls2F0KN1e-MC0yIF)](https://app.deepsource.com/gh/clFaster/SVNPathCopy/)
+[![DeepSource](https://app.deepsource.com/gh/clFaster/SVNPathCopy.svg/?label=code+coverage&show_trend=true&token=RiaId6Kpls2F0KN1e-MC0yIF)](https://app.deepsource.com/gh/clFaster/SVNPathCopy/)
 
 A Windows Explorer context menu extension that copies SVN repository URLs to your clipboard - with or without revision information.
 
