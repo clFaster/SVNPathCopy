@@ -42,8 +42,8 @@ jobs:
       - name: Build Tests
         run: dotnet build tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-restore
 
-      - name: Run Tests
-        run: dotnet test tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx"
+      - name: Run Tests with Coverage
+        run: dotnet test tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-build --verbosity normal --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage"
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
@@ -51,6 +51,17 @@ jobs:
         with:
           name: test-results
           path: tests/SVNPathCopy.Tests/TestResults/*.trx
+
+      - name: DeepSource Code Coverage
+        if: success()
+        run: |
+          # Install DeepSource CLI
+          curl https://deepsource.io/cli | sh
+
+          # Find and report coverage files
+          find tests/SVNPathCopy.Tests/TestResults -name "*.xml" -type f -exec ./bin/deepsource report --analyzer test-coverage --key csharp --value-file {} \;
+        env:
+          DEEPSOURCE_DSN: ${{ vars.DEEPSOURCE_DSN }}
 
   build-installer:
     name: Build Installer
