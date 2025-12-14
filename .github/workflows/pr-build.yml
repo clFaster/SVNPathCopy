@@ -1,0 +1,120 @@
+name: PR Build & Test
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  build:
+    name: Build & Test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'preview'
+
+      # .NET Framework 4.8 is pre-installed on windows-latest
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build Core Library
+        run: dotnet build src/SVNPathCopy.Core/SVNPathCopy.Core.csproj --configuration Release --no-restore
+
+      - name: Build Shell Extension (.NET Framework 4.8)
+        run: dotnet build src/SVNPathCopy.ShellExtension/SVNPathCopy.ShellExtension.csproj --configuration Release --no-restore
+
+      - name: Build Configuration App
+        run: dotnet build src/SVNPathCopy.Configuration/SVNPathCopy.Configuration.csproj --configuration Release --no-restore
+
+      - name: Build Tests
+        run: dotnet build tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-restore
+
+      - name: Run Tests with Coverage
+        run: dotnet test tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-build --verbosity normal --results-directory tests/SVNPathCopy.Tests/TestResults --logger "trx;LogFileName=test-results.trx" --collect:"XPlat Code Coverage"
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: tests/SVNPathCopy.Tests/TestResults/*.trx
+
+      - name: DeepSource Code Coverage
+        if: success() && env.DEEPSOURCE_DSN != ''
+        shell: pwsh
+        env:
+          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+        run: |
+          # Install DeepSource CLI (drops ./bin/deepsource.exe on Windows)
+          curl https://deepsource.io/cli | sh
+
+          $coverageRoot = "tests/SVNPathCopy.Tests/TestResults"
+          if (-not (Test-Path $coverageRoot)) {
+            throw "Coverage results directory not found: $coverageRoot"
+          }
+
+          # dotnet test --collect:"XPlat Code Coverage" produces Cobertura at coverage.cobertura.xml
+          $coverageFiles = Get-ChildItem -Path $coverageRoot -Recurse -File -Filter "coverage.cobertura.xml"
+          if (-not $coverageFiles -or $coverageFiles.Count -eq 0) {
+            Write-Host "No coverage.cobertura.xml found under $coverageRoot. Directory contents:";
+            Get-ChildItem -Path $coverageRoot -Recurse | Select-Object FullName | Format-Table -AutoSize | Out-String | Write-Host
+            throw "No coverage files found."
+          }
+
+          foreach ($file in $coverageFiles) {
+            Write-Host "Reporting coverage: $($file.FullName)"
+            ./bin/deepsource.exe report --analyzer test-coverage --key csharp --value-file "$($file.FullName)"
+          }
+
+  build-installer:
+    name: Build Installer
+    runs-on: windows-latest
+    needs: build
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'preview'
+
+      - name: Install WiX Toolset
+        run: dotnet tool install --global wix
+
+      - name: Add WiX extensions
+        run: |
+          wix extension add WixToolset.UI.wixext
+          wix extension add WixToolset.Util.wixext
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build Solution (Release)
+        run: dotnet build --configuration Release
+
+      - name: Build Installer
+        run: dotnet build src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj --configuration Release --no-restore
+
+      - name: Upload MSI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: SVNPathCopy-Installer
+          path: src/SVNPathCopy.Installer/bin/x64/Release/*.msi

@@ -1,0 +1,15 @@
+<Project Sdk="WixToolset.Sdk/6.0.0">
+    <PropertyGroup>
+        <OutputType>Package</OutputType>
+        <InstallerPlatform>x64</InstallerPlatform>
+        <OutputName>SVNPathCopy-2.0.0</OutputName>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\SVNPathCopy.ShellExtension\SVNPathCopy.ShellExtension.csproj"/>
+        <ProjectReference Include="..\SVNPathCopy.Configuration\SVNPathCopy.Configuration.csproj"/>
+    </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="WixToolset.UI.wixext" Version="6.0.2"/>
+        <PackageReference Include="WixToolset.Util.wixext" Version="6.0.2"/>
+    </ItemGroup>
+</Project>

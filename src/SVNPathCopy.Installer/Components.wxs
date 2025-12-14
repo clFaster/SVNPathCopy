@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Components for SVN Path Copy installation
+-->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+    <Fragment>
+
+        <!-- Main application components -->
+        <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+
+            <!-- Configuration Application executable -->
+            <Component Id="ConfigurationApp" Guid="E5F6A7B8-C9D0-1234-EF12-345678901235">
+                <File Id="ConfigurationExe"
+                      Source="$(var.SVNPathCopy.Configuration.TargetDir)SVNPathCopy.Configuration.exe"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- Configuration Application DLL -->
+            <Component Id="ConfigurationDll" Guid="A1B2C3D4-E5F6-7890-ABCD-EF1234567891">
+                <File Id="ConfigurationDllFile"
+                      Source="$(var.SVNPathCopy.Configuration.TargetDir)SVNPathCopy.Configuration.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- Core Library for Configuration -->
+            <Component Id="CoreLibrary" Guid="C3D4E5F6-A7B8-9012-CDEF-123456789013">
+                <File Id="CoreDll"
+                      Source="$(var.SVNPathCopy.Configuration.TargetDir)SVNPathCopy.Core.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- CommunityToolkit.Mvvm dependency -->
+            <Component Id="MvvmToolkit" Guid="D4E5F6A7-B8C9-0123-DEF0-123456789014">
+                <File Id="MvvmToolkitDll"
+                      Source="$(var.SVNPathCopy.Configuration.TargetDir)CommunityToolkit.Mvvm.dll"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- Runtime configuration files -->
+            <Component Id="ConfigurationDeps" Guid="E5F6A7B8-C9D0-1234-EF01-234567890125">
+                <File Id="ConfigurationDepsJson"
+                      Source="$(var.SVNPathCopy.Configuration.TargetDir)SVNPathCopy.Configuration.deps.json"
+                      KeyPath="yes"/>
+            </Component>
+
+            <Component Id="ConfigurationRuntimeConfig" Guid="F6A7B8C9-D0E1-2345-F012-345678901236">
+                <File Id="ConfigurationRuntimeConfigJson"
+                      Source="$(var.SVNPathCopy.Configuration.TargetDir)SVNPathCopy.Configuration.runtimeconfig.json"
+                      KeyPath="yes"/>
+            </Component>
+
+            <!-- Start Menu shortcut component -->
+            <Component Id="ConfigurationShortcut" Guid="A7B8C9D0-E1F2-3456-0123-456789012347">
+                <!-- Start Menu shortcut -->
+                <Shortcut Id="ConfigurationStartMenuShortcut"
+                          Directory="ApplicationProgramsFolder"
+                          Name="SVN Path Copy Configuration"
+                          Target="[INSTALLFOLDER]SVNPathCopy.Configuration.exe"
+                          WorkingDirectory="INSTALLFOLDER"/>
+                <!-- Remove shortcut on uninstall -->
+                <RemoveFile Id="RemoveConfigurationShortcut" 
+                            Name="SVN Path Copy Configuration.lnk" 
+                            On="uninstall"
+                            Directory="ApplicationProgramsFolder"/>
+                <!-- Remove the Start Menu folder on uninstall -->
+                <RemoveFolder Id="RemoveApplicationProgramsFolder"
+                              Directory="ApplicationProgramsFolder"
+                              On="uninstall"/>
+                <RegistryValue Root="HKCU"
+                               Key="Software\SVNPathCopy\Installer"
+                               Name="ShortcutInstalled"
+                               Type="integer"
+                               Value="1"
+                               KeyPath="yes"/>
+            </Component>
+
+            <!-- Install folder cleanup on uninstall -->
+            <Component Id="InstallFolderCleanup" Guid="C3D4E5F6-A7B8-9012-CDEF-234567890123">
+                <RemoveFolder Id="RemoveInstallFolder"
+                              Directory="INSTALLFOLDER"
+                              On="uninstall"/>
+                <RemoveFolder Id="RemoveShellExtensionFolder"
+                              Directory="ShellExtensionFolder"
+                              On="uninstall"/>
+                <RegistryValue Root="HKCU"
+                               Key="Software\SVNPathCopy\Installer"
+                               Name="FolderCleanupInstalled"
+                               Type="integer"
+                               Value="1"
+                               KeyPath="yes"/>
+            </Component>
+
+        </ComponentGroup>
+
+    </Fragment>
+</Wix>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  SVN Path Copy Installer
+  WiX 6 installer for the SVN Path Copy shell extension
+
+  Installation Options:
+  =====================
+  GUI Install:    Double-click the MSI or run: msiexec /i SVNPathCopy-2.0.0.msi
+  Silent Install: msiexec /i SVNPathCopy-2.0.0.msi /qn
+  Basic UI:       msiexec /i SVNPathCopy-2.0.0.msi /qb
+  Silent Uninstall: msiexec /x SVNPathCopy-2.0.0.msi /qn
+
+  The installer will:
+  1. Install the shell extension and configuration app to Program Files
+  2. Register the COM server with regasm.exe
+  3. Add context menu handlers to Windows Explorer
+  4. Create Start Menu shortcuts
+-->
+<Wix xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui"
+     xmlns="http://wixtoolset.org/schemas/v4/wxs">
+
+    <!-- Product definition -->
+    <Package Name="SVN Path Copy"
+             Manufacturer="Moritz Reis"
+             Version="2.0.0.0"
+             UpgradeCode="ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0966"
+             Scope="perMachine"
+             Language="1033"
+             Codepage="1252">
+
+        <!-- Upgrade handling - removes older versions -->
+        <MajorUpgrade DowngradeErrorMessage="A newer version of SVN Path Copy is already installed."
+                      Schedule="afterInstallInitialize"/>
+
+        <!-- Media for the installer -->
+        <MediaTemplate EmbedCab="yes"/>
+
+        <!--
+          Runtime Requirements:
+          - Shell Extension: .NET Framework 4.8 (included in Windows 10/11)
+          - Configuration App: .NET 10 Desktop Runtime (will prompt if missing)
+        -->
+
+        <!-- 
+          Note: We do NOT close Explorer during uninstall because:
+          1. It causes user disruption (desktop/taskbar disappear)
+          2. Can trigger reboot prompts even with RebootPrompt="no"
+          3. The DLL will be removed on next reboot if locked (PendingFileRenameOperations)
+          
+          Windows will automatically handle locked files via MoveFileEx with MOVEFILE_DELAY_UNTIL_REBOOT.
+        -->
+        
+        <!-- Suppress reboot prompts - files will be removed on next natural restart if locked -->
+        <Property Id="REBOOT" Value="ReallySuppress"/>
+
+        <!-- Features -->
+        <Feature Id="ProductFeature" Title="SVN Path Copy" Level="1" Description="Installs the SVN Path Copy shell extension and configuration utility.">
+            <ComponentGroupRef Id="ProductComponents"/>
+            <ComponentGroupRef Id="ShellExtensionComponents"/>
+        </Feature>
+
+        <!-- WiX UI - Minimal dialog set (Welcome, License, Progress, Complete) -->
+        <ui:WixUI Id="WixUI_Minimal"/>
+
+        <!-- License file (RTF format required) -->
+        <WixVariable Id="WixUILicenseRtf" Value="Resources\License.rtf"/>
+
+        <!-- Banner and dialog images (optional, uses defaults if not provided) -->
+        <!-- <WixVariable Id="WixUIBannerBmp" Value="Resources\banner.bmp"/> -->
+        <!-- <WixVariable Id="WixUIDialogBmp" Value="Resources\dialog.bmp"/> -->
+
+        <!-- Product URLs for Add/Remove Programs -->
+        <Property Id="ARPURLINFOABOUT" Value="https://github.com/clFaster/SVNPathCopy"/>
+        <Property Id="ARPHELPLINK" Value="https://github.com/clFaster/SVNPathCopy/issues"/>
+        <Property Id="ARPNOREPAIR" Value="yes"/>
+
+        <!-- Install icon in Add/Remove Programs -->
+        <Icon Id="ProductIcon" SourceFile="Resources\app.ico"/>
+        <Property Id="ARPPRODUCTICON" Value="ProductIcon"/>
+
+    </Package>
+
+</Wix>
