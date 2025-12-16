@@ -203,7 +203,7 @@ public partial class MainViewModel : ObservableObject
             StatusMessage = "Installing shell extension... Please accept the UAC prompt if it appears.";
             IsStatusError = false;
 
-            await Task.Run(() => { _shellExtensionService.Register(); });
+            await Task.Run(() => _shellExtensionService.Register());
 
             // Small delay to allow registry to update
             await Task.Delay(500);
@@ -265,7 +265,7 @@ public partial class MainViewModel : ObservableObject
             StatusMessage = "Uninstalling shell extension... Please accept the UAC prompt if it appears.";
             IsStatusError = false;
 
-            await Task.Run(() => { _shellExtensionService.Unregister(); });
+            await Task.Run(() => _shellExtensionService.Unregister());
 
             // Small delay to allow registry to update
             await Task.Delay(500);
