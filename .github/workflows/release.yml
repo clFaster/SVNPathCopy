@@ -34,7 +34,7 @@ jobs:
     permissions:
         contents: write
     outputs:
-      new_version: ${{ steps.set_output.outputs.new_version }}
+      new_version: ${{ steps.bump_version.outputs.new_version }}
     steps:
       - name: Ensure branch is main
         if: github.ref != 'refs/heads/main'
