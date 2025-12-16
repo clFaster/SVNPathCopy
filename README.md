@@ -21,8 +21,8 @@ A Windows Explorer context menu extension that copies SVN repository URLs to you
 ### Prerequisites
 
 - Windows 10/11 (64-bit)
-- .NET Framework 4.8 Runtime (included in Windows 10/11)
-- .NET 10 Desktop Runtime (for Configuration App)
+- .NET Framework 4.8 Runtime
+- .NET 10 Desktop Runtime
 
 ### Download
 
@@ -30,7 +30,6 @@ Download the latest installer from the [Releases](https://github.com/clFaster/SV
 
 ### Installation Options
 
-#### GUI Installation
 Double-click the MSI installer and follow the prompts.
 
 ## Usage
