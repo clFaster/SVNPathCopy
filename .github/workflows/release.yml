@@ -1,0 +1,173 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-type:
+        type: choice
+        description: Which type of release to create?
+        required: true
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
+      pre-release:
+        type: boolean
+        description: Is this a pre-release?
+        required: false
+        default: false
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+
+jobs:
+  # Get Current Version and Bump it depending on the release-type input
+  update-version:
+    name: Update Version
+    runs-on: ubuntu-latest
+    permissions: write-all
+    outputs:
+      new_version: ${{ steps.set_output.outputs.new_version }}
+    steps:
+      - name: Ensure branch is main
+        if: github.ref != 'refs/heads/main'
+        run: |
+          text="Publishing a new version can only be done from the main branch."
+          echo "::error title=Wrong Branch::$text"
+          exit 1
+
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Read current version
+        id: read_version
+        run: |
+          VERSION=$(grep -oP '(?<=<VersionPrefix>)[^<]+' Directory.Build.props)
+          echo "Current version: $VERSION"
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Bump version
+        id: bump_version
+        shell: bash
+        run: |
+          # Retrieve the increment type from the GitHub Actions input
+          increment="${{ inputs.release-type }}"
+
+          # Split the VERSION variable into its major, minor, and patch components
+          IFS='.' read -r -a parts <<< "${{ steps.read_version.outputs.version }}"
+
+          # Check if the VERSION variable was split correctly
+          if [ "${#parts[@]}" -ne 3 ]; then
+            echo "Invalid version format"
+            exit 1
+          fi
+
+          major=${parts[0]}
+          minor=${parts[1]}
+          patch=${parts[2]}
+
+          # Increment the appropriate version component
+          if [ "$increment" = "major" ]; then
+            major=$((major + 1))
+            minor=0
+            patch=0
+          elif [ "$increment" = "minor" ]; then
+            minor=$((minor + 1))
+            patch=0
+          elif [ "$increment" = "patch" ]; then
+            patch=$((patch + 1))
+          else
+            echo "Invalid increment type"
+            exit 1
+          fi
+
+          # Construct the new version string
+          new_version="$major.$minor.$patch"
+
+          # Output the new version
+          echo "New version: $new_version"
+
+          # Set the output variable for GitHub Actions
+          echo "new_version=$new_version" >> $GITHUB_OUTPUT
+
+      - name: Set output variable
+        id: set_output
+        run: |
+          echo "new_version=${{ steps.bump_version.outputs.new_version }}" >> $GITHUB_OUTPUT
+
+      - name: Update Directory.Build.props
+        run: |
+          # Update VersionPrefix
+          sed -i 's/<VersionPrefix>[^<]*<\/VersionPrefix>/<VersionPrefix>${{ steps.bump_version.outputs.new_version }}<\/VersionPrefix>/g' Directory.Build.props
+          # Update AssemblyVersion
+          sed -i 's/<AssemblyVersion>[^<]*<\/AssemblyVersion>/<AssemblyVersion>${{ steps.bump_version.outputs.new_version }}.0<\/AssemblyVersion>/g' Directory.Build.props
+          # Update FileVersion
+          sed -i 's/<FileVersion>[^<]*<\/FileVersion>/<FileVersion>${{ steps.bump_version.outputs.new_version }}.0<\/FileVersion>/g' Directory.Build.props
+
+      - name: Update installer output name
+        run: |
+          sed -i 's/<OutputName>SVNPathCopy-[^<]*<\/OutputName>/<OutputName>SVNPathCopy-${{ steps.bump_version.outputs.new_version }}<\/OutputName>/g' src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj
+
+      - name: Commit and push version update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Directory.Build.props src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj
+          git commit -m "chore: bump version to ${{ steps.bump_version.outputs.new_version }}"
+          git push
+
+  # Build and create release
+  build-and-release:
+    name: Build and Release
+    runs-on: windows-latest
+    needs: update-version
+    permissions: write-all
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '10.0.x'
+          dotnet-quality: 'preview'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build Core Library
+        run: dotnet build src/SVNPathCopy.Core/SVNPathCopy.Core.csproj --configuration Release --no-restore
+
+      - name: Build Shell Extension (.NET Framework 4.8)
+        run: dotnet build src/SVNPathCopy.ShellExtension/SVNPathCopy.ShellExtension.csproj --configuration Release --no-restore
+
+      - name: Build Configuration App
+        run: dotnet build src/SVNPathCopy.Configuration/SVNPathCopy.Configuration.csproj --configuration Release --no-restore
+
+      - name: Build Tests
+        run: dotnet build tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-restore
+
+      - name: Run Tests
+        run: dotnet test tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj --configuration Release --no-build --verbosity normal
+
+      - name: Build Installer
+        run: dotnet build src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj --configuration Release
+
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $releaseArgs = @('release', 'create', "v${{ needs.update-version.outputs.new_version }}", '--generate-notes')
+          if ('${{ inputs.pre-release }}' -eq 'true') {
+            $releaseArgs += '--prerelease'
+          }
+          gh @releaseArgs
+          gh release upload "v${{ needs.update-version.outputs.new_version }}" "src/SVNPathCopy.Installer/bin/Release/SVNPathCopy-${{ needs.update-version.outputs.new_version }}.msi"
