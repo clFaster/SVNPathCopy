@@ -116,6 +116,11 @@ jobs:
         run: |
           sed -i 's/<OutputName>SVNPathCopy-[^<]*<\/OutputName>/<OutputName>SVNPathCopy-${{ steps.bump_version.outputs.new_version }}<\/OutputName>/g' src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj
 
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
       - name: Commit and push version update
         run: |
           git config user.name "github-actions[bot]"
