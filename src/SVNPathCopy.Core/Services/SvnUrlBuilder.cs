@@ -43,7 +43,7 @@ public static class SvnUrlBuilder
         {
             UrlEncodingStyle.None => url,
             UrlEncodingStyle.Path => EncodePathSegments(url),
-            UrlEncodingStyle.Full => Uri.EscapeUriString(url),
+            UrlEncodingStyle.Full => Uri.EscapeDataString(url),
             _ => url
         };
     }
