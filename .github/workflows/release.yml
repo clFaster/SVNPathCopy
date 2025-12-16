@@ -103,6 +103,11 @@ jobs:
             /repos/clFaster/StatusSwift/actions/variables/VERSION \
             -f "name=VERSION" -f "value=${{ steps.bump_version.outputs.new_version }}"
 
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
       - name: Update Directory.Build.props
         run: |
           # Update VersionPrefix
@@ -115,11 +120,6 @@ jobs:
       - name: Update installer output name
         run: |
           sed -i 's/<OutputName>SVNPathCopy-[^<]*<\/OutputName>/<OutputName>SVNPathCopy-${{ steps.bump_version.outputs.new_version }}<\/OutputName>/g' src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj
-
-      - name: Checkout repository
-        uses: actions/checkout@v6
-        with:
-          ref: main
 
       - name: Commit and push version update
         run: |
