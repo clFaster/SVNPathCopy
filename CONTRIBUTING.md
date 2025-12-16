@@ -44,21 +44,12 @@ Feature requests are welcome! Please include:
 ### Prerequisites
 
 - Windows 10/11
-- Visual Studio 2022 (17.8+) or JetBrains Rider
 - .NET 10 SDK
 - .NET Framework 4.8 Developer Pack
-- Git
 
 ### Getting Started
 
 ```powershell
-# Clone your fork
-git clone https://github.com/YOUR-USERNAME/SVNPathCopy.git
-cd SVNPathCopy
-
-# Add upstream remote
-git remote add upstream https://github.com/clFaster/SVNPathCopy.git
-
 # Install dependencies and build
 dotnet restore
 dotnet build
@@ -101,28 +92,6 @@ Shell extensions require special handling for testing:
 - Inline comments for complex logic
 - Update README.md for user-facing changes
 
-## Project Structure
-
-```
-src/
-├── SVNPathCopy.Core/           # Shared library (.NET Standard 2.0)
-│   ├── Interfaces/             # Service interfaces
-│   ├── Models/                 # DTOs and settings
-│   └── Services/               # Service implementations
-│
-├── SVNPathCopy.ShellExtension/ # Shell extension (.NET Framework 4.8)
-│   ├── Services/               # SVN service implementation
-│   └── Resources/              # Icons and images
-│
-├── SVNPathCopy.Configuration/  # WPF app (.NET 10)
-│   ├── ViewModels/             # MVVM view models
-│   ├── Converters/             # Value converters
-│   └── Resources/              # App resources
-│
-└── SVNPathCopy.Installer/      # WiX installer
-    └── *.wxs                   # WiX source files
-```
-
 ## Commit Messages
 
 Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
@@ -150,15 +119,6 @@ feat(shell): add keyboard shortcut support
 fix(config): handle missing registry key gracefully
 docs: update installation instructions
 ```
-
-## Release Process
-
-1. Update version numbers in all `.csproj` files
-2. Update CHANGELOG in README.md
-3. Create a release branch: `release/v2.x.x`
-4. Build and test the installer
-5. Create a GitHub release with the MSI attached
-6. Merge release branch to `main`
 
 ## Questions?
 
