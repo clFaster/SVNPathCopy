@@ -31,7 +31,8 @@ jobs:
   update-version:
     name: Update Version
     runs-on: ubuntu-latest
-    permissions: write-all
+    permissions:
+        contents: write
     outputs:
       new_version: ${{ steps.set_output.outputs.new_version }}
     steps:
@@ -42,15 +43,9 @@ jobs:
           echo "::error title=Wrong Branch::$text"
           exit 1
 
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
       - name: Read current version
-        id: read_version
         run: |
-          VERSION=$(grep -oP '(?<=<VersionPrefix>)[^<]+' Directory.Build.props)
-          echo "Current version: $VERSION"
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "Current version: ${{ vars.VERSION }}"
 
       - name: Bump version
         id: bump_version
@@ -60,7 +55,7 @@ jobs:
           increment="${{ inputs.release-type }}"
 
           # Split the VERSION variable into its major, minor, and patch components
-          IFS='.' read -r -a parts <<< "${{ steps.read_version.outputs.version }}"
+          IFS='.' read -r -a parts <<< "${{ vars.VERSION }}"
 
           # Check if the VERSION variable was split correctly
           if [ "${#parts[@]}" -ne 3 ]; then
@@ -96,10 +91,17 @@ jobs:
           # Set the output variable for GitHub Actions
           echo "new_version=$new_version" >> $GITHUB_OUTPUT
 
-      - name: Set output variable
-        id: set_output
+      - name: Update version var
+        id: write_version
+        env:
+            GH_TOKEN: ${{ secrets.UPDATE_VERSION_TOKEN }}
         run: |
-          echo "new_version=${{ steps.bump_version.outputs.new_version }}" >> $GITHUB_OUTPUT
+            gh api \
+            --method PATCH \
+            -H "Accept: application/vnd.github+json" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            /repos/clFaster/StatusSwift/actions/variables/VERSION \
+            -f "name=VERSION" -f "value=${{ steps.bump_version.outputs.new_version }}"
 
       - name: Update Directory.Build.props
         run: |
