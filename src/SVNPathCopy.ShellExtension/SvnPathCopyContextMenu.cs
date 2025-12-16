@@ -60,15 +60,6 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
         // Add separator at the top
         menu.Items.Add(new ToolStripSeparator());
 
-        // Test menu item - always visible for debugging
-        var testItem = new ToolStripMenuItem { Text = "SVN Path Copy - Test (Extension Working!)", Image = icon };
-        testItem.Click += (_, _) => MessageBox.Show(
-            $"SVN Path Copy shell extension is working!\n\nSelected: {SelectedItemPaths.FirstOrDefault() ?? "(none)"}\nSettings Enabled: {settings.Enabled}",
-            "SVN Path Copy Test",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
-        menu.Items.Add(testItem);
-
         // Create "Copy SVN URL with Revision" menu item
         if (settings.ShowCopyWithRevision)
         {
