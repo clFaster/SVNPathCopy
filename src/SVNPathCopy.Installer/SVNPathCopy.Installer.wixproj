@@ -2,7 +2,7 @@
     <PropertyGroup>
         <OutputType>Package</OutputType>
         <InstallerPlatform>x64</InstallerPlatform>
-        <OutputName>SVNPathCopy-2.0.1</OutputName>
+        <OutputName>SVNPathCopy-1.2.1</OutputName>
     </PropertyGroup>
     <ItemGroup>
         <ProjectReference Include="..\SVNPathCopy.ShellExtension\SVNPathCopy.ShellExtension.csproj"/>
