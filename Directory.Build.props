@@ -21,9 +21,9 @@
 
     <!-- Version information -->
     <PropertyGroup>
-        <VersionPrefix>1.2.2</VersionPrefix>
-        <AssemblyVersion>1.2.2.0</AssemblyVersion>
-        <FileVersion>1.2.2.0</FileVersion>
+        <VersionPrefix>1.2.3</VersionPrefix>
+        <AssemblyVersion>1.2.3.0</AssemblyVersion>
+        <FileVersion>1.2.3.0</FileVersion>
     </PropertyGroup>
 
 </Project>
