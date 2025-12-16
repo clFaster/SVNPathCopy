@@ -27,7 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Resources\SVNPathCopy-Icon.ico" />
+        <Resource Include="Resources\SVNPathCopy-Icon.ico"/>
     </ItemGroup>
 
 </Project>

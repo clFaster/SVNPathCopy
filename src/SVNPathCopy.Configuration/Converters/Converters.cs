@@ -109,7 +109,7 @@ public class MultiBoolToVisibilityConverter : IMultiValueConverter
             return Visibility.Collapsed;
         }
 
-        foreach (var value in values)
+        foreach (object value in values)
         {
             if (value is bool boolValue && !boolValue)
             {
@@ -123,4 +123,3 @@ public class MultiBoolToVisibilityConverter : IMultiValueConverter
     public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) =>
         throw new NotImplementedException();
 }
-

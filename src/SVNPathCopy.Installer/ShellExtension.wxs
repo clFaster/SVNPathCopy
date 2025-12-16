@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
   Shell Extension components with COM registration using regasm
-  
+
   COM Registration Strategy:
   - Use regasm.exe from .NET Framework 4.0 (included in Windows 10/11)
   - Register with /codebase flag for side-by-side deployment
   - Deferred custom actions run elevated for HKLM registry access
   - SetProperty passes properties to deferred actions via CustomActionData
-  
+
   Silent Installation:
   - msiexec /i SVNPathCopy-2.0.0.msi /qn           (completely silent)
   - msiexec /i SVNPathCopy-2.0.0.msi /qb           (basic UI, progress bar only)
   - msiexec /x SVNPathCopy-2.0.0.msi /qn           (silent uninstall)
 -->
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
-     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
+>
     <Fragment>
 
         <!-- Set properties for deferred custom actions (must happen in immediate phase) -->
@@ -50,7 +50,8 @@
             <Custom Action="RegisterShellExtension" After="InstallFiles" Condition="NOT REMOVE"/>
 
             <!-- Unregister before files are removed (uninstall or upgrade) -->
-            <Custom Action="UnregisterShellExtension" Before="RemoveFiles" Condition="REMOVE=&quot;ALL&quot; OR WIX_UPGRADE_DETECTED"/>
+            <Custom Action="UnregisterShellExtension" Before="RemoveFiles"
+                    Condition="REMOVE=&quot;ALL&quot; OR WIX_UPGRADE_DETECTED"/>
         </InstallExecuteSequence>
 
         <ComponentGroup Id="ShellExtensionComponents" Directory="ShellExtensionFolder">
@@ -144,7 +145,7 @@
                 <!-- Remove registry keys on uninstall -->
                 <RemoveRegistryKey Root="HKCU" Key="SOFTWARE\SVNPathCopy" Action="removeOnUninstall"/>
             </Component>
-            
+
             <!-- Installer registry cleanup on uninstall -->
             <Component Id="InstallerRegistryCleanup" Guid="D0E1F2A3-B4C5-6789-3456-890123456780">
                 <RegistryValue Root="HKCU"

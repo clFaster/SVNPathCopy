@@ -151,11 +151,12 @@
                             </TextBlock>
                         </StackPanel>
 
-                        <TextBlock Text="Install the shell extension to enable context menu items in Windows Explorer. Requires administrator privileges."
-                                   FontSize="12"
-                                   Foreground="{StaticResource TextSecondaryBrush}"
-                                   TextWrapping="Wrap"
-                                   Margin="0,0,0,8" />
+                        <TextBlock
+                            Text="Install the shell extension to enable context menu items in Windows Explorer. Requires administrator privileges."
+                            FontSize="12"
+                            Foreground="{StaticResource TextSecondaryBrush}"
+                            TextWrapping="Wrap"
+                            Margin="0,0,0,8" />
 
                         <TextBlock FontSize="11"
                                    Foreground="{StaticResource TextSecondaryBrush}"
@@ -180,7 +181,8 @@
                                     IsEnabled="{Binding IsProcessing, Converter={StaticResource InverseBoolConverter}}">
                                 <Button.Visibility>
                                     <MultiBinding Converter="{StaticResource MultiBoolToVisibilityConverter}">
-                                        <Binding Path="IsShellExtensionRegistered" Converter="{StaticResource InverseBoolConverter}" />
+                                        <Binding Path="IsShellExtensionRegistered"
+                                                 Converter="{StaticResource InverseBoolConverter}" />
                                         <Binding Path="IsProcessing" Converter="{StaticResource InverseBoolConverter}" />
                                     </MultiBinding>
                                 </Button.Visibility>

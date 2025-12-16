@@ -58,8 +58,8 @@
                           Target="[INSTALLFOLDER]SVNPathCopy.Configuration.exe"
                           WorkingDirectory="INSTALLFOLDER"/>
                 <!-- Remove shortcut on uninstall -->
-                <RemoveFile Id="RemoveConfigurationShortcut" 
-                            Name="SVN Path Copy Configuration.lnk" 
+                <RemoveFile Id="RemoveConfigurationShortcut"
+                            Name="SVN Path Copy Configuration.lnk"
                             On="uninstall"
                             Directory="ApplicationProgramsFolder"/>
                 <!-- Remove the Start Menu folder on uninstall -->
