@@ -11,9 +11,9 @@
 
     <!-- Package metadata -->
     <PropertyGroup>
-        <Authors>clFaster</Authors>
+        <Authors>Moritz Reis</Authors>
         <Company>SVNPathCopy</Company>
-        <Copyright>Copyright © 2019-2024 clFaster</Copyright>
+        <Copyright>Copyright © 2019-2025 Moritz Reis</Copyright>
         <RepositoryUrl>https://github.com/clFaster/SVNPathCopy</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
