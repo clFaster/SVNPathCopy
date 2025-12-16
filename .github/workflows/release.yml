@@ -121,11 +121,15 @@ jobs:
         run: |
           sed -i 's/<OutputName>SVNPathCopy-[^<]*<\/OutputName>/<OutputName>SVNPathCopy-${{ steps.bump_version.outputs.new_version }}<\/OutputName>/g' src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj
 
+      - name: Update Package.wxs version
+        run: |
+          sed -i 's/Version="[^"]*"/Version="${{ steps.bump_version.outputs.new_version }}.0"/g' src/SVNPathCopy.Installer/Package.wxs
+
       - name: Commit and push version update
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add Directory.Build.props src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj
+          git add Directory.Build.props src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj src/SVNPathCopy.Installer/Package.wxs
           git commit -m "chore: bump version to ${{ steps.bump_version.outputs.new_version }}"
           git push
 
