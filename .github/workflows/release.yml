@@ -100,7 +100,7 @@ jobs:
             --method PATCH \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/clFaster/StatusSwift/actions/variables/VERSION \
+            /repos/clFaster/SVNPathCopy/actions/variables/VERSION \
             -f "name=VERSION" -f "value=${{ steps.bump_version.outputs.new_version }}"
 
       - name: Checkout repository
