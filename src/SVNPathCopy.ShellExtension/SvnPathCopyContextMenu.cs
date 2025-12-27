@@ -97,7 +97,7 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
             var settings = _configService.GetSettings();
 
             // Validate the operation
-            (var isValid, var errorMessage) = svnService.ValidateCopyOperation(
+            var (isValid, errorMessage) = svnService.ValidateCopyOperation(
                 path,
                 withRevision
             );
