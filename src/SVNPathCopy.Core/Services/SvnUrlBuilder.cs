@@ -14,7 +14,11 @@ public static class SvnUrlBuilder
     /// <param name="includeRevision">Whether to include revision in the URL.</param>
     /// <param name="encodingStyle">The URL encoding style to apply.</param>
     /// <returns>The formatted SVN URL.</returns>
-    public static string BuildUrl(SvnItemInfo info, bool includeRevision, UrlEncodingStyle encodingStyle)
+    public static string BuildUrl(
+        SvnItemInfo info,
+        bool includeRevision,
+        UrlEncodingStyle encodingStyle
+    )
     {
         if (info is null)
         {
@@ -44,7 +48,7 @@ public static class SvnUrlBuilder
             UrlEncodingStyle.None => url,
             UrlEncodingStyle.Path => EncodePathSegments(url),
             UrlEncodingStyle.Full => Uri.EscapeDataString(url),
-            _ => url
+            _ => url,
         };
     }
 

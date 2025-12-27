@@ -12,7 +12,11 @@ public class SvnUrlBuilderTests
     public void BuildUrl_WithoutRevision_ReturnsUrlOnly()
     {
         // Arrange
-        var info = new SvnItemInfo { Uri = "https://svn.example.com/repo/file.txt", LastChangeRevision = 42 };
+        var info = new SvnItemInfo
+        {
+            Uri = "https://svn.example.com/repo/file.txt",
+            LastChangeRevision = 42,
+        };
 
         // Act
         string result = SvnUrlBuilder.BuildUrl(info, false, UrlEncodingStyle.None);
@@ -25,7 +29,11 @@ public class SvnUrlBuilderTests
     public void BuildUrl_WithRevision_IncludesRevisionParameter()
     {
         // Arrange
-        var info = new SvnItemInfo { Uri = "https://svn.example.com/repo/file.txt", LastChangeRevision = 42 };
+        var info = new SvnItemInfo
+        {
+            Uri = "https://svn.example.com/repo/file.txt",
+            LastChangeRevision = 42,
+        };
 
         // Act
         string result = SvnUrlBuilder.BuildUrl(info, true, UrlEncodingStyle.None);
@@ -38,7 +46,11 @@ public class SvnUrlBuilderTests
     public void BuildUrl_WithRevisionZero_DoesNotIncludeRevision()
     {
         // Arrange
-        var info = new SvnItemInfo { Uri = "https://svn.example.com/repo/file.txt", LastChangeRevision = 0 };
+        var info = new SvnItemInfo
+        {
+            Uri = "https://svn.example.com/repo/file.txt",
+            LastChangeRevision = 0,
+        };
 
         // Act
         string result = SvnUrlBuilder.BuildUrl(info, true, UrlEncodingStyle.None);
@@ -51,7 +63,11 @@ public class SvnUrlBuilderTests
     public void BuildUrl_WithPathEncoding_EncodesSpaces()
     {
         // Arrange
-        var info = new SvnItemInfo { Uri = "https://svn.example.com/repo/my file.txt", LastChangeRevision = 42 };
+        var info = new SvnItemInfo
+        {
+            Uri = "https://svn.example.com/repo/my file.txt",
+            LastChangeRevision = 42,
+        };
 
         // Act
         string result = SvnUrlBuilder.BuildUrl(info, false, UrlEncodingStyle.Path);
@@ -68,7 +84,8 @@ public class SvnUrlBuilderTests
 
         // Act & Assert
         Should.Throw<ArgumentException>(() =>
-            SvnUrlBuilder.BuildUrl(info, false, UrlEncodingStyle.None));
+            SvnUrlBuilder.BuildUrl(info, false, UrlEncodingStyle.None)
+        );
     }
 
     [Test]
@@ -76,6 +93,7 @@ public class SvnUrlBuilderTests
     {
         // Act & Assert
         Should.Throw<ArgumentNullException>(() =>
-            SvnUrlBuilder.BuildUrl(null!, false, UrlEncodingStyle.None));
+            SvnUrlBuilder.BuildUrl(null!, false, UrlEncodingStyle.None)
+        );
     }
 }

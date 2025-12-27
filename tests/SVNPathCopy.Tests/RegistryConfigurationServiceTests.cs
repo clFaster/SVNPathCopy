@@ -8,7 +8,6 @@ namespace SVNPathCopy.Tests;
 [TestFixture]
 public class RegistryConfigurationServiceTests
 {
-
     [Test]
     public void SvnPathCopySettings_DefaultValues_AreCorrect()
     {

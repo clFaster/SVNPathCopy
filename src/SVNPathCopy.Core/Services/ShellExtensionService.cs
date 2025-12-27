@@ -21,14 +21,17 @@ public class ShellExtensionService : IShellExtensionService
         if (string.IsNullOrEmpty(assemblyPath) || !File.Exists(assemblyPath))
         {
             throw new FileNotFoundException(
-                $"Shell extension assembly not found. Searched locations around: {AppContext.BaseDirectory}");
+                $"Shell extension assembly not found. Searched locations around: {AppContext.BaseDirectory}"
+            );
         }
 
         // Use regasm to register the shell extension
         string? regasmPath = GetRegAsmPath();
         if (string.IsNullOrEmpty(regasmPath))
         {
-            throw new FileNotFoundException("RegAsm.exe not found. .NET Framework 4.x must be installed.");
+            throw new FileNotFoundException(
+                "RegAsm.exe not found. .NET Framework 4.x must be installed."
+            );
         }
 
         var startInfo = new ProcessStartInfo
@@ -38,7 +41,7 @@ public class ShellExtensionService : IShellExtensionService
             UseShellExecute = true,
             Verb = "runas", // Request elevation - this will show UAC prompt
             CreateNoWindow = true,
-            WindowStyle = ProcessWindowStyle.Hidden
+            WindowStyle = ProcessWindowStyle.Hidden,
         };
 
         using var process = Process.Start(startInfo);
@@ -52,7 +55,8 @@ public class ShellExtensionService : IShellExtensionService
         if (process.ExitCode != 0)
         {
             throw new InvalidOperationException(
-                $"RegAsm.exe failed with exit code {process.ExitCode}. Make sure you accepted the UAC prompt and have administrator privileges.");
+                $"RegAsm.exe failed with exit code {process.ExitCode}. Make sure you accepted the UAC prompt and have administrator privileges."
+            );
         }
 
         return true;
@@ -65,14 +69,17 @@ public class ShellExtensionService : IShellExtensionService
         if (string.IsNullOrEmpty(assemblyPath) || !File.Exists(assemblyPath))
         {
             throw new FileNotFoundException(
-                $"Shell extension assembly not found. Searched locations around: {AppContext.BaseDirectory}");
+                $"Shell extension assembly not found. Searched locations around: {AppContext.BaseDirectory}"
+            );
         }
 
         // Use regasm to unregister the shell extension
         string? regasmPath = GetRegAsmPath();
         if (string.IsNullOrEmpty(regasmPath))
         {
-            throw new FileNotFoundException("RegAsm.exe not found. .NET Framework 4.x must be installed.");
+            throw new FileNotFoundException(
+                "RegAsm.exe not found. .NET Framework 4.x must be installed."
+            );
         }
 
         var startInfo = new ProcessStartInfo
@@ -82,7 +89,7 @@ public class ShellExtensionService : IShellExtensionService
             UseShellExecute = true,
             Verb = "runas", // Request elevation - this will show UAC prompt
             CreateNoWindow = true,
-            WindowStyle = ProcessWindowStyle.Hidden
+            WindowStyle = ProcessWindowStyle.Hidden,
         };
 
         using var process = Process.Start(startInfo);
@@ -96,7 +103,8 @@ public class ShellExtensionService : IShellExtensionService
         if (process.ExitCode != 0)
         {
             throw new InvalidOperationException(
-                $"RegAsm.exe failed with exit code {process.ExitCode}. Make sure you accepted the UAC prompt and have administrator privileges.");
+                $"RegAsm.exe failed with exit code {process.ExitCode}. Make sure you accepted the UAC prompt and have administrator privileges."
+            );
         }
 
         return true;
@@ -117,30 +125,112 @@ public class ShellExtensionService : IShellExtensionService
         {
             // Same directory (for installed/packaged version)
             Path.Combine(baseDir, "SVNPathCopy.ShellExtension.dll"),
-
             // Development paths from Configuration output directory
             // From: src\SVNPathCopy.Configuration\bin\Debug\net10.0-windows\win-x64\
             // To:   src\SVNPathCopy.ShellExtension\bin\x64\Debug\net48\
-            Path.Combine(baseDir, "..", "..", "..", "..", "..", "SVNPathCopy.ShellExtension", "bin", "x64", "Debug",
-                "net48", "SVNPathCopy.ShellExtension.dll"),
-            Path.Combine(baseDir, "..", "..", "..", "..", "..", "SVNPathCopy.ShellExtension", "bin", "x64", "Release",
-                "net48", "SVNPathCopy.ShellExtension.dll"),
-            Path.Combine(baseDir, "..", "..", "..", "..", "..", "SVNPathCopy.ShellExtension", "bin", "Debug", "net48",
-                "SVNPathCopy.ShellExtension.dll"),
-            Path.Combine(baseDir, "..", "..", "..", "..", "..", "SVNPathCopy.ShellExtension", "bin", "Release", "net48",
-                "SVNPathCopy.ShellExtension.dll"),
-
+            Path.Combine(
+                baseDir,
+                "..",
+                "..",
+                "..",
+                "..",
+                "..",
+                "SVNPathCopy.ShellExtension",
+                "bin",
+                "x64",
+                "Debug",
+                "net48",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
+            Path.Combine(
+                baseDir,
+                "..",
+                "..",
+                "..",
+                "..",
+                "..",
+                "SVNPathCopy.ShellExtension",
+                "bin",
+                "x64",
+                "Release",
+                "net48",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
+            Path.Combine(
+                baseDir,
+                "..",
+                "..",
+                "..",
+                "..",
+                "..",
+                "SVNPathCopy.ShellExtension",
+                "bin",
+                "Debug",
+                "net48",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
+            Path.Combine(
+                baseDir,
+                "..",
+                "..",
+                "..",
+                "..",
+                "..",
+                "SVNPathCopy.ShellExtension",
+                "bin",
+                "Release",
+                "net48",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
             // Alternative paths (in case of different build output structure)
             Path.Combine(baseDir, "..", "SVNPathCopy.ShellExtension.dll"),
             Path.Combine(baseDir, "..", "..", "SVNPathCopy.ShellExtension.dll"),
-            Path.Combine(baseDir, "..", "..", "..", "SVNPathCopy.ShellExtension", "bin", "x64", "Debug", "net48",
-                "SVNPathCopy.ShellExtension.dll"),
-            Path.Combine(baseDir, "..", "..", "..", "SVNPathCopy.ShellExtension", "bin", "x64", "Release", "net48",
-                "SVNPathCopy.ShellExtension.dll"),
-            Path.Combine(baseDir, "..", "..", "..", "SVNPathCopy.ShellExtension", "bin", "Debug", "net48",
-                "SVNPathCopy.ShellExtension.dll"),
-            Path.Combine(baseDir, "..", "..", "..", "SVNPathCopy.ShellExtension", "bin", "Release", "net48",
-                "SVNPathCopy.ShellExtension.dll")
+            Path.Combine(
+                baseDir,
+                "..",
+                "..",
+                "..",
+                "SVNPathCopy.ShellExtension",
+                "bin",
+                "x64",
+                "Debug",
+                "net48",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
+            Path.Combine(
+                baseDir,
+                "..",
+                "..",
+                "..",
+                "SVNPathCopy.ShellExtension",
+                "bin",
+                "x64",
+                "Release",
+                "net48",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
+            Path.Combine(
+                baseDir,
+                "..",
+                "..",
+                "..",
+                "SVNPathCopy.ShellExtension",
+                "bin",
+                "Debug",
+                "net48",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
+            Path.Combine(
+                baseDir,
+                "..",
+                "..",
+                "..",
+                "SVNPathCopy.ShellExtension",
+                "bin",
+                "Release",
+                "net48",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
         };
 
         foreach (string path in candidatePaths)
@@ -164,9 +254,14 @@ public class ShellExtensionService : IShellExtensionService
         string[] installedPaths = new[]
         {
             // Installed location: "SVN Path Copy\ShellExtension\" subdirectory
-            Path.Combine(programFiles, "SVN Path Copy", "ShellExtension", "SVNPathCopy.ShellExtension.dll"),
+            Path.Combine(
+                programFiles,
+                "SVN Path Copy",
+                "ShellExtension",
+                "SVNPathCopy.ShellExtension.dll"
+            ),
             // Fallback: same directory as config app
-            Path.Combine(programFiles, "SVN Path Copy", "SVNPathCopy.ShellExtension.dll")
+            Path.Combine(programFiles, "SVN Path Copy", "SVNPathCopy.ShellExtension.dll"),
         };
 
         foreach (string instPath in installedPaths)
@@ -187,7 +282,7 @@ public class ShellExtensionService : IShellExtensionService
         string[] netFrameworkPaths = new[]
         {
             Path.Combine(windowsDir, @"Microsoft.NET\Framework64\v4.0.30319\regasm.exe"),
-            Path.Combine(windowsDir, @"Microsoft.NET\Framework\v4.0.30319\regasm.exe")
+            Path.Combine(windowsDir, @"Microsoft.NET\Framework\v4.0.30319\regasm.exe"),
         };
 
         foreach (string path in netFrameworkPaths)

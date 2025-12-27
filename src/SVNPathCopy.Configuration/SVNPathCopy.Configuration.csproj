@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net10.0-windows</TargetFramework>
@@ -19,15 +18,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\SVNPathCopy.Core\SVNPathCopy.Core.csproj"/>
+        <ProjectReference Include="..\SVNPathCopy.Core\SVNPathCopy.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <Resource Include="Resources\SVNPathCopy-Icon.ico"/>
+        <Resource Include="Resources\SVNPathCopy-Icon.ico" />
     </ItemGroup>
-
 </Project>

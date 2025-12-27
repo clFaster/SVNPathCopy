@@ -1,17 +1,20 @@
 <Solution>
     <Configurations>
-        <Platform Name="Any CPU"/>
-        <Platform Name="x64"/>
+        <Platform Name="Any CPU" />
+        <Platform Name="x64" />
     </Configurations>
 
-    <Project Path="src/SVNPathCopy.Configuration/SVNPathCopy.Configuration.csproj"/>
-    <Project Path="src/SVNPathCopy.Core/SVNPathCopy.Core.csproj"/>
+    <Project Path="src/SVNPathCopy.Configuration/SVNPathCopy.Configuration.csproj" />
+    <Project Path="src/SVNPathCopy.Core/SVNPathCopy.Core.csproj" />
     <Project Path="src/SVNPathCopy.ShellExtension/SVNPathCopy.ShellExtension.csproj">
-        <Platform Project="x64"/>
+        <Platform Project="x64" />
     </Project>
 
-    <Project Path="tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj"/>
-    <Project Path="src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj" Type="a5a4e0d0-69be-4b0a-9e4b-8c9f6e4a1234">
-        <Platform Project="x64"/>
+    <Project Path="tests/SVNPathCopy.Tests/SVNPathCopy.Tests.csproj" />
+    <Project
+        Path="src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj"
+        Type="a5a4e0d0-69be-4b0a-9e4b-8c9f6e4a1234"
+    >
+        <Platform Project="x64" />
     </Project>
 </Solution>

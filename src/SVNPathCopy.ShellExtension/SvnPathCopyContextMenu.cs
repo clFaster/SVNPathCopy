@@ -63,7 +63,11 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
         // Create "Copy SVN URL with Revision" menu item
         if (settings.ShowCopyWithRevision)
         {
-            var itemWithRevision = new ToolStripMenuItem { Text = "Copy SVN URL with REV", Image = icon };
+            var itemWithRevision = new ToolStripMenuItem
+            {
+                Text = "Copy SVN URL with REV",
+                Image = icon,
+            };
             itemWithRevision.Click += (_, _) => CopySvnPath(true);
             menu.Items.Add(itemWithRevision);
         }
@@ -93,7 +97,10 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
             SvnPathCopySettings settings = _configService.GetSettings();
 
             // Validate the operation
-            (bool isValid, string? errorMessage) = svnService.ValidateCopyOperation(path, withRevision);
+            (bool isValid, string? errorMessage) = svnService.ValidateCopyOperation(
+                path,
+                withRevision
+            );
             if (!isValid)
             {
                 ShowError(errorMessage ?? "Cannot copy SVN URL.");
@@ -117,11 +124,7 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
 
     private static void ShowError(string message)
     {
-        MessageBox.Show(
-            message,
-            "SVN Path Copy",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Warning);
+        MessageBox.Show(message, "SVN Path Copy", MessageBoxButtons.OK, MessageBoxIcon.Warning);
     }
 
     private static Image? LoadMenuIcon()

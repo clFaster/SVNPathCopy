@@ -76,7 +76,8 @@ public sealed class SharpSvnService : ISvnService, IDisposable
             result.IsVersioned = status.LocalContentStatus != SvnStatus.NotVersioned;
             result.HasLocalModifications = status.LocalContentStatus == SvnStatus.Modified;
             result.IsScheduledForAddition = status.LocalContentStatus == SvnStatus.Added;
-            result.ExistsInRepository = status.IsRemoteUpdated || status.LocalContentStatus != SvnStatus.Added;
+            result.ExistsInRepository =
+                status.IsRemoteUpdated || status.LocalContentStatus != SvnStatus.Added;
         }
         catch (SvnException)
         {
@@ -102,12 +103,15 @@ public sealed class SharpSvnService : ISvnService, IDisposable
             Uri = info.Uri?.ToString(),
             LastChangeRevision = info.LastChangeRevision,
             LocalPath = path,
-            RepositoryRoot = info.RepositoryRoot?.ToString()
+            RepositoryRoot = info.RepositoryRoot?.ToString(),
         };
     }
 
     /// <inheritdoc />
-    public (bool IsValid, string? ErrorMessage) ValidateCopyOperation(string path, bool withRevision)
+    public (bool IsValid, string? ErrorMessage) ValidateCopyOperation(
+        string path,
+        bool withRevision
+    )
     {
         if (string.IsNullOrEmpty(path))
         {
@@ -120,7 +124,10 @@ public sealed class SharpSvnService : ISvnService, IDisposable
 
             if (!status.IsVersioned)
             {
-                return (false, "Item is not under version control. Please add and commit your changes.");
+                return (
+                    false,
+                    "Item is not under version control. Please add and commit your changes."
+                );
             }
 
             if (withRevision && status.IsScheduledForAddition)

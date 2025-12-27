@@ -44,5 +44,5 @@ public enum UrlEncodingStyle
     /// <summary>
     ///     Full URL encoding.
     /// </summary>
-    Full
+    Full,
 }

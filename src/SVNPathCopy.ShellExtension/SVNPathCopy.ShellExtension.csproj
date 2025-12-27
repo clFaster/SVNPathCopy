@@ -1,5 +1,4 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>net48</TargetFramework>
         <LangVersion>latest</LangVersion>
@@ -22,16 +21,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="SharpShell" Version="2.7.2"/>
-        <PackageReference Include="SharpSvn.1.8-x64" Version="1.8019.4006.503"/>
+        <PackageReference Include="SharpShell" Version="2.7.2" />
+        <PackageReference Include="SharpSvn.1.8-x64" Version="1.8019.4006.503" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\SVNPathCopy.Core\SVNPathCopy.Core.csproj"/>
+        <ProjectReference Include="..\SVNPathCopy.Core\SVNPathCopy.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Resources\share_svn.png"/>
+        <EmbeddedResource Include="Resources\share_svn.png" />
     </ItemGroup>
-
 </Project>

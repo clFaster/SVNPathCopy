@@ -18,24 +18,34 @@ public partial class MainViewModel : ObservableObject
     private readonly IConfigurationService _configService;
     private readonly IShellExtensionService _shellExtensionService;
 
-    [ObservableProperty] [NotifyPropertyChangedFor(nameof(StatusText))] [NotifyPropertyChangedFor(nameof(IsEnabled))]
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(StatusText))]
+    [NotifyPropertyChangedFor(nameof(IsEnabled))]
     private bool _extensionEnabled = true;
 
-    [ObservableProperty] private bool _isProcessing;
+    [ObservableProperty]
+    private bool _isProcessing;
 
-    [ObservableProperty] private bool _isShellExtensionRegistered;
+    [ObservableProperty]
+    private bool _isShellExtensionRegistered;
 
-    [ObservableProperty] private bool _isStatusError;
+    [ObservableProperty]
+    private bool _isStatusError;
 
-    [ObservableProperty] private UrlEncodingStyle _selectedEncodingStyle = UrlEncodingStyle.Path;
+    [ObservableProperty]
+    private UrlEncodingStyle _selectedEncodingStyle = UrlEncodingStyle.Path;
 
-    [ObservableProperty] private string _shellExtensionPath = string.Empty;
+    [ObservableProperty]
+    private string _shellExtensionPath = string.Empty;
 
-    [ObservableProperty] private bool _showCopyWithoutRevision = true;
+    [ObservableProperty]
+    private bool _showCopyWithoutRevision = true;
 
-    [ObservableProperty] private bool _showCopyWithRevision = true;
+    [ObservableProperty]
+    private bool _showCopyWithRevision = true;
 
-    [ObservableProperty] private string _statusMessage = string.Empty;
+    [ObservableProperty]
+    private string _statusMessage = string.Empty;
     private bool _suppressAutosave;
 
     /// <summary>
@@ -53,16 +63,18 @@ public partial class MainViewModel : ObservableObject
     ///     Initializes a new instance of the <see cref="MainViewModel" /> class with a custom configuration service.
     /// </summary>
     /// <param name="configService">The configuration service to use.</param>
-    public MainViewModel(IConfigurationService configService) : this(configService, new ShellExtensionService())
-    {
-    }
+    public MainViewModel(IConfigurationService configService)
+        : this(configService, new ShellExtensionService()) { }
 
     /// <summary>
     ///     Initializes a new instance of the <see cref="MainViewModel" /> class with custom services.
     /// </summary>
     /// <param name="configService">The configuration service to use.</param>
     /// <param name="shellExtensionService">The shell extension service to use.</param>
-    public MainViewModel(IConfigurationService configService, IShellExtensionService shellExtensionService)
+    public MainViewModel(
+        IConfigurationService configService,
+        IShellExtensionService shellExtensionService
+    )
     {
         _configService = configService;
         _shellExtensionService = shellExtensionService;
@@ -135,8 +147,11 @@ public partial class MainViewModel : ObservableObject
     }
 
     partial void OnExtensionEnabledChanged(bool value) => TryAutosave();
+
     partial void OnShowCopyWithRevisionChanged(bool value) => TryAutosave();
+
     partial void OnShowCopyWithoutRevisionChanged(bool value) => TryAutosave();
+
     partial void OnSelectedEncodingStyleChanged(UrlEncodingStyle value) => TryAutosave();
 
     private void TryAutosave()
@@ -159,7 +174,7 @@ public partial class MainViewModel : ObservableObject
                 Enabled = ExtensionEnabled,
                 ShowCopyWithRevision = ShowCopyWithRevision,
                 ShowCopyWithoutRevision = ShowCopyWithoutRevision,
-                UrlEncodingStyle = SelectedEncodingStyle
+                UrlEncodingStyle = SelectedEncodingStyle,
             };
 
             _configService.SaveSettings(settings);
@@ -200,7 +215,8 @@ public partial class MainViewModel : ObservableObject
         try
         {
             IsProcessing = true;
-            StatusMessage = "Installing shell extension... Please accept the UAC prompt if it appears.";
+            StatusMessage =
+                "Installing shell extension... Please accept the UAC prompt if it appears.";
             IsStatusError = false;
 
             await Task.Run(() => _shellExtensionService.Register());
@@ -228,7 +244,8 @@ public partial class MainViewModel : ObservableObject
         {
             // ERROR_CANCELLED - User cancelled the UAC prompt
             IsStatusError = true;
-            StatusMessage = "Installation cancelled. You must accept the UAC prompt to install the shell extension.";
+            StatusMessage =
+                "Installation cancelled. You must accept the UAC prompt to install the shell extension.";
         }
         catch (FileNotFoundException ex)
         {
@@ -262,7 +279,8 @@ public partial class MainViewModel : ObservableObject
         try
         {
             IsProcessing = true;
-            StatusMessage = "Uninstalling shell extension... Please accept the UAC prompt if it appears.";
+            StatusMessage =
+                "Uninstalling shell extension... Please accept the UAC prompt if it appears.";
             IsStatusError = false;
 
             await Task.Run(() => _shellExtensionService.Unregister());

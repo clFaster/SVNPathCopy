@@ -31,8 +31,16 @@ public sealed class RegistryConfigurationService : IConfigurationService
 
             settings.Enabled = GetBoolValue(key, _enabledValueName, true);
             settings.ShowCopyWithRevision = GetBoolValue(key, _showCopyWithRevisionValueName, true);
-            settings.ShowCopyWithoutRevision = GetBoolValue(key, _showCopyWithoutRevisionValueName, true);
-            settings.UrlEncodingStyle = GetEnumValue(key, _urlEncodingStyleValueName, UrlEncodingStyle.Path);
+            settings.ShowCopyWithoutRevision = GetBoolValue(
+                key,
+                _showCopyWithoutRevisionValueName,
+                true
+            );
+            settings.UrlEncodingStyle = GetEnumValue(
+                key,
+                _urlEncodingStyleValueName,
+                UrlEncodingStyle.Path
+            );
         }
         catch
         {
@@ -57,10 +65,21 @@ public sealed class RegistryConfigurationService : IConfigurationService
         }
 
         key.SetValue(_enabledValueName, settings.Enabled ? 1 : 0, RegistryValueKind.DWord);
-        key.SetValue(_showCopyWithRevisionValueName, settings.ShowCopyWithRevision ? 1 : 0, RegistryValueKind.DWord);
-        key.SetValue(_showCopyWithoutRevisionValueName, settings.ShowCopyWithoutRevision ? 1 : 0,
-            RegistryValueKind.DWord);
-        key.SetValue(_urlEncodingStyleValueName, settings.UrlEncodingStyle.ToString(), RegistryValueKind.String);
+        key.SetValue(
+            _showCopyWithRevisionValueName,
+            settings.ShowCopyWithRevision ? 1 : 0,
+            RegistryValueKind.DWord
+        );
+        key.SetValue(
+            _showCopyWithoutRevisionValueName,
+            settings.ShowCopyWithoutRevision ? 1 : 0,
+            RegistryValueKind.DWord
+        );
+        key.SetValue(
+            _urlEncodingStyleValueName,
+            settings.UrlEncodingStyle.ToString(),
+            RegistryValueKind.String
+        );
     }
 
     /// <inheritdoc />
@@ -77,7 +96,8 @@ public sealed class RegistryConfigurationService : IConfigurationService
         return defaultValue;
     }
 
-    private static TEnum GetEnumValue<TEnum>(RegistryKey key, string name, TEnum defaultValue) where TEnum : struct
+    private static TEnum GetEnumValue<TEnum>(RegistryKey key, string name, TEnum defaultValue)
+        where TEnum : struct
     {
         string? value = key.GetValue(name) as string;
         if (string.IsNullOrEmpty(value))

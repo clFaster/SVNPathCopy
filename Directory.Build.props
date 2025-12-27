@@ -1,12 +1,12 @@
 <Project>
-
     <!-- Common properties for all projects -->
     <PropertyGroup>
         <LangVersion>latest</LangVersion>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
-        <NoWarn>$(NoWarn);CS1591</NoWarn> <!-- Missing XML comment for publicly visible type -->
+        <NoWarn>$(NoWarn);CS1591</NoWarn>
+        <!-- Missing XML comment for publicly visible type -->
     </PropertyGroup>
 
     <!-- Package metadata -->
@@ -25,5 +25,4 @@
         <AssemblyVersion>1.2.4.0</AssemblyVersion>
         <FileVersion>1.2.4.0</FileVersion>
     </PropertyGroup>
-
 </Project>

@@ -46,8 +46,12 @@ public class StringToVisibilityConverter : IValueConverter
         return Visibility.Collapsed;
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
-        throw new NotImplementedException();
+    public object ConvertBack(
+        object value,
+        Type targetType,
+        object parameter,
+        CultureInfo culture
+    ) => throw new NotImplementedException();
 }
 
 /// <summary>
@@ -67,8 +71,12 @@ public class BoolToColorConverter : IValueConverter
         return new SolidColorBrush(Colors.Gray);
     }
 
-    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
-        throw new NotImplementedException();
+    public object ConvertBack(
+        object value,
+        Type targetType,
+        object parameter,
+        CultureInfo culture
+    ) => throw new NotImplementedException();
 }
 
 /// <summary>
@@ -120,6 +128,10 @@ public class MultiBoolToVisibilityConverter : IMultiValueConverter
         return Visibility.Visible;
     }
 
-    public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture) =>
-        throw new NotImplementedException();
+    public object[] ConvertBack(
+        object value,
+        Type[] targetTypes,
+        object parameter,
+        CultureInfo culture
+    ) => throw new NotImplementedException();
 }
