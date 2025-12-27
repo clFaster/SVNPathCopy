@@ -22,7 +22,7 @@
     <!-- Product definition -->
     <Package Name="SVN Path Copy"
              Manufacturer="Moritz Reis"
-             Version="1.2.4.0"
+             Version="2.0.0.0"
              UpgradeCode="ED4DD0F3-E4E3-4F8A-AD97-7B76FC3E0966"
              Scope="perMachine"
              Language="1033"
