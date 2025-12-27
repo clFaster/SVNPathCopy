@@ -19,7 +19,7 @@ public class SvnUrlBuilderTests
         };
 
         // Act
-        string result = SvnUrlBuilder.BuildUrl(info, false, UrlEncodingStyle.None);
+        var result = SvnUrlBuilder.BuildUrl(info, false, UrlEncodingStyle.None);
 
         // Assert
         result.ShouldBe("https://svn.example.com/repo/file.txt");
@@ -36,7 +36,7 @@ public class SvnUrlBuilderTests
         };
 
         // Act
-        string result = SvnUrlBuilder.BuildUrl(info, true, UrlEncodingStyle.None);
+        var result = SvnUrlBuilder.BuildUrl(info, true, UrlEncodingStyle.None);
 
         // Assert
         result.ShouldBe("https://svn.example.com/repo/file.txt?p=42");
@@ -53,7 +53,7 @@ public class SvnUrlBuilderTests
         };
 
         // Act
-        string result = SvnUrlBuilder.BuildUrl(info, true, UrlEncodingStyle.None);
+        var result = SvnUrlBuilder.BuildUrl(info, true, UrlEncodingStyle.None);
 
         // Assert
         result.ShouldBe("https://svn.example.com/repo/file.txt");
@@ -70,7 +70,7 @@ public class SvnUrlBuilderTests
         };
 
         // Act
-        string result = SvnUrlBuilder.BuildUrl(info, false, UrlEncodingStyle.Path);
+        var result = SvnUrlBuilder.BuildUrl(info, false, UrlEncodingStyle.Path);
 
         // Assert
         result.ShouldContain("%20");

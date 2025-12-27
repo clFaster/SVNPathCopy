@@ -23,7 +23,7 @@ public sealed class RegistryConfigurationService : IConfigurationService
 
         try
         {
-            using RegistryKey? key = Registry.CurrentUser.OpenSubKey(_registryKeyPath);
+            using var key = Registry.CurrentUser.OpenSubKey(_registryKeyPath);
             if (key is null)
             {
                 return settings; // Return defaults if key doesn't exist
@@ -58,7 +58,7 @@ public sealed class RegistryConfigurationService : IConfigurationService
             throw new ArgumentNullException(nameof(settings));
         }
 
-        using RegistryKey? key = Registry.CurrentUser.CreateSubKey(_registryKeyPath);
+        using var key = Registry.CurrentUser.CreateSubKey(_registryKeyPath);
         if (key is null)
         {
             throw new InvalidOperationException("Failed to create registry key.");
@@ -87,7 +87,7 @@ public sealed class RegistryConfigurationService : IConfigurationService
 
     private static bool GetBoolValue(RegistryKey key, string name, bool defaultValue)
     {
-        object? value = key.GetValue(name);
+        var value = key.GetValue(name);
         if (value is int intValue)
         {
             return intValue != 0;
@@ -99,7 +99,7 @@ public sealed class RegistryConfigurationService : IConfigurationService
     private static TEnum GetEnumValue<TEnum>(RegistryKey key, string name, TEnum defaultValue)
         where TEnum : struct
     {
-        string? value = key.GetValue(name) as string;
+        var value = key.GetValue(name) as string;
         if (string.IsNullOrEmpty(value))
         {
             return defaultValue;

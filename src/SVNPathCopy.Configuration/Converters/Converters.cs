@@ -117,7 +117,7 @@ public class MultiBoolToVisibilityConverter : IMultiValueConverter
             return Visibility.Collapsed;
         }
 
-        foreach (object value in values)
+        foreach (var value in values)
         {
             if (value is bool boolValue && !boolValue)
             {

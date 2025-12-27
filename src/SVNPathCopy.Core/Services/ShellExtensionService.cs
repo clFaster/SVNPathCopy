@@ -17,7 +17,7 @@ public class ShellExtensionService : IShellExtensionService
     /// <inheritdoc />
     public bool Register()
     {
-        string? assemblyPath = GetAssemblyPath();
+        var assemblyPath = GetAssemblyPath();
         if (string.IsNullOrEmpty(assemblyPath) || !File.Exists(assemblyPath))
         {
             throw new FileNotFoundException(
@@ -26,7 +26,7 @@ public class ShellExtensionService : IShellExtensionService
         }
 
         // Use regasm to register the shell extension
-        string? regasmPath = GetRegAsmPath();
+        var regasmPath = GetRegAsmPath();
         if (string.IsNullOrEmpty(regasmPath))
         {
             throw new FileNotFoundException(
@@ -65,7 +65,7 @@ public class ShellExtensionService : IShellExtensionService
     /// <inheritdoc />
     public bool Unregister()
     {
-        string? assemblyPath = GetAssemblyPath();
+        var assemblyPath = GetAssemblyPath();
         if (string.IsNullOrEmpty(assemblyPath) || !File.Exists(assemblyPath))
         {
             throw new FileNotFoundException(
@@ -74,7 +74,7 @@ public class ShellExtensionService : IShellExtensionService
         }
 
         // Use regasm to unregister the shell extension
-        string? regasmPath = GetRegAsmPath();
+        var regasmPath = GetRegAsmPath();
         if (string.IsNullOrEmpty(regasmPath))
         {
             throw new FileNotFoundException(
@@ -114,14 +114,14 @@ public class ShellExtensionService : IShellExtensionService
     public string? GetAssemblyPath()
     {
         // Try to find the shell extension DLL in common locations
-        string? baseDir = AppContext.BaseDirectory;
+        var baseDir = AppContext.BaseDirectory;
 
         // BaseDir for Configuration app during development is typically:
         // SVNPathCopy\src\SVNPathCopy.Configuration\bin\Debug\net10.0-windows\win-x64\
         // We need to navigate to:
         // SVNPathCopy\src\SVNPathCopy.ShellExtension\bin\x64\Debug\net48\
 
-        string[] candidatePaths = new[]
+        var candidatePaths = new[]
         {
             // Same directory (for installed/packaged version)
             Path.Combine(baseDir, "SVNPathCopy.ShellExtension.dll"),
@@ -233,11 +233,11 @@ public class ShellExtensionService : IShellExtensionService
             ),
         };
 
-        foreach (string path in candidatePaths)
+        foreach (var path in candidatePaths)
         {
             try
             {
-                string fullPath = Path.GetFullPath(path);
+                var fullPath = Path.GetFullPath(path);
                 if (File.Exists(fullPath))
                 {
                     return fullPath;
@@ -250,8 +250,8 @@ public class ShellExtensionService : IShellExtensionService
         }
 
         // Check in Program Files (for installed version)
-        string programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
-        string[] installedPaths = new[]
+        var programFiles = Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles);
+        var installedPaths = new[]
         {
             // Installed location: "SVN Path Copy\ShellExtension\" subdirectory
             Path.Combine(
@@ -264,7 +264,7 @@ public class ShellExtensionService : IShellExtensionService
             Path.Combine(programFiles, "SVN Path Copy", "SVNPathCopy.ShellExtension.dll"),
         };
 
-        foreach (string instPath in installedPaths)
+        foreach (var instPath in installedPaths)
         {
             if (File.Exists(instPath))
             {
@@ -278,14 +278,14 @@ public class ShellExtensionService : IShellExtensionService
     private static string? GetRegAsmPath()
     {
         // Try to find regasm.exe for .NET Framework
-        string windowsDir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
-        string[] netFrameworkPaths = new[]
+        var windowsDir = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+        var netFrameworkPaths = new[]
         {
             Path.Combine(windowsDir, @"Microsoft.NET\Framework64\v4.0.30319\regasm.exe"),
             Path.Combine(windowsDir, @"Microsoft.NET\Framework\v4.0.30319\regasm.exe"),
         };
 
-        foreach (string path in netFrameworkPaths)
+        foreach (var path in netFrameworkPaths)
         {
             if (File.Exists(path))
             {
@@ -298,9 +298,9 @@ public class ShellExtensionService : IShellExtensionService
 
     private static bool IsShellExtensionComRegistered(Guid clsid)
     {
-        string clsidKeyPath = $@"SOFTWARE\Classes\CLSID\{{{clsid}}}\InprocServer32";
+        var clsidKeyPath = $@"SOFTWARE\Classes\CLSID\{{{clsid}}}\InprocServer32";
 
-        foreach (RegistryView view in new[] { RegistryView.Registry64, RegistryView.Registry32 })
+        foreach (var view in new[] { RegistryView.Registry64, RegistryView.Registry32 })
         {
             if (RegistryKeyExists(RegistryHive.LocalMachine, view, clsidKeyPath))
             {
@@ -321,7 +321,7 @@ public class ShellExtensionService : IShellExtensionService
         try
         {
             using var baseKey = RegistryKey.OpenBaseKey(hive, view);
-            using RegistryKey? key = baseKey.OpenSubKey(subKeyPath);
+            using var key = baseKey.OpenSubKey(subKeyPath);
             return key is not null;
         }
         catch

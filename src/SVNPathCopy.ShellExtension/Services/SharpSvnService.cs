@@ -72,7 +72,7 @@ public sealed class SharpSvnService : ISvnService, IDisposable
                 return result;
             }
 
-            SvnStatusEventArgs? status = statuses[0];
+            var status = statuses[0];
             result.IsVersioned = status.LocalContentStatus != SvnStatus.NotVersioned;
             result.HasLocalModifications = status.LocalContentStatus == SvnStatus.Modified;
             result.IsScheduledForAddition = status.LocalContentStatus == SvnStatus.Added;
@@ -96,7 +96,7 @@ public sealed class SharpSvnService : ISvnService, IDisposable
         }
 
         using var client = new SvnClient();
-        client.GetInfo(path, out SvnInfoEventArgs info);
+        client.GetInfo(path, out var info);
 
         return new SvnItemInfo
         {
@@ -120,7 +120,7 @@ public sealed class SharpSvnService : ISvnService, IDisposable
 
         try
         {
-            SvnItemStatus status = GetStatus(path);
+            var status = GetStatus(path);
 
             if (!status.IsVersioned)
             {

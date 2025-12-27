@@ -31,7 +31,7 @@ public static class SvnUrlBuilder
         }
 
         // Uri is verified to be non-null above
-        string url = ApplyEncoding(info.Uri!, encodingStyle);
+        var url = ApplyEncoding(info.Uri!, encodingStyle);
 
         if (includeRevision && info.LastChangeRevision > 0)
         {
@@ -55,7 +55,7 @@ public static class SvnUrlBuilder
     private static string EncodePathSegments(string url)
     {
         // Parse the URL to encode only the path portion
-        if (!Uri.TryCreate(url, UriKind.Absolute, out Uri? uri))
+        if (!Uri.TryCreate(url, UriKind.Absolute, out var uri))
         {
             return url;
         }

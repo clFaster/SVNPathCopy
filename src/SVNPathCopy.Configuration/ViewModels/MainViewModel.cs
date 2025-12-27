@@ -86,7 +86,7 @@ public partial class MainViewModel : ObservableObject
 
     public bool IsEnabled => ExtensionEnabled;
 
-    public UrlEncodingStyle[] EncodingStyles { get; } = Enum.GetValues<UrlEncodingStyle>();
+    public IReadOnlyList<UrlEncodingStyle> EncodingStyles { get; } = Enum.GetValues<UrlEncodingStyle>().ToList().AsReadOnly();
 
     private void LoadSettings()
     {
@@ -94,7 +94,7 @@ public partial class MainViewModel : ObservableObject
         {
             _suppressAutosave = true;
 
-            SvnPathCopySettings settings = _configService.GetSettings();
+            var settings = _configService.GetSettings();
             ExtensionEnabled = settings.Enabled;
             ShowCopyWithRevision = settings.ShowCopyWithRevision;
             ShowCopyWithoutRevision = settings.ShowCopyWithoutRevision;
@@ -114,9 +114,9 @@ public partial class MainViewModel : ObservableObject
 
     private static bool IsShellExtensionComRegistered(Guid clsid)
     {
-        string clsidKeyPath = $@"SOFTWARE\Classes\CLSID\{{{clsid}}}\InprocServer32";
+        var clsidKeyPath = $@"SOFTWARE\Classes\CLSID\{{{clsid}}}\InprocServer32";
 
-        foreach (RegistryView view in new[] { RegistryView.Registry64, RegistryView.Registry32 })
+        foreach (var view in new[] { RegistryView.Registry64, RegistryView.Registry32 })
         {
             if (RegistryKeyExists(RegistryHive.LocalMachine, view, clsidKeyPath))
             {
@@ -137,7 +137,7 @@ public partial class MainViewModel : ObservableObject
         try
         {
             using var baseKey = RegistryKey.OpenBaseKey(hive, view);
-            using RegistryKey? key = baseKey.OpenSubKey(subKeyPath);
+            using var key = baseKey.OpenSubKey(subKeyPath);
             return key is not null;
         }
         catch

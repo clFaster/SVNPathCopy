@@ -33,7 +33,7 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
     protected override bool CanShowMenu()
     {
         // Check if extension is enabled
-        SvnPathCopySettings settings = _configService.GetSettings();
+        var settings = _configService.GetSettings();
         if (!settings.Enabled)
         {
             return false;
@@ -54,8 +54,8 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
     protected override ContextMenuStrip CreateMenu()
     {
         var menu = new ContextMenuStrip();
-        SvnPathCopySettings settings = _configService.GetSettings();
-        Image? icon = _menuIcon.Value;
+        var settings = _configService.GetSettings();
+        var icon = _menuIcon.Value;
 
         // Add separator at the top
         menu.Items.Add(new ToolStripSeparator());
@@ -85,7 +85,7 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
 
     private void CopySvnPath(bool withRevision)
     {
-        string? path = SelectedItemPaths.FirstOrDefault();
+        var path = SelectedItemPaths.FirstOrDefault();
         if (string.IsNullOrEmpty(path))
         {
             return;
@@ -94,10 +94,10 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
         try
         {
             using var svnService = new SharpSvnService();
-            SvnPathCopySettings settings = _configService.GetSettings();
+            var settings = _configService.GetSettings();
 
             // Validate the operation
-            (bool isValid, string? errorMessage) = svnService.ValidateCopyOperation(
+            (var isValid, var errorMessage) = svnService.ValidateCopyOperation(
                 path,
                 withRevision
             );
@@ -109,8 +109,8 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
             }
 
             // Get SVN info and build URL
-            SvnItemInfo info = svnService.GetInfo(path);
-            string url = SvnUrlBuilder.BuildUrl(info, withRevision, settings.UrlEncodingStyle);
+            var info = svnService.GetInfo(path);
+            var url = SvnUrlBuilder.BuildUrl(info, withRevision, settings.UrlEncodingStyle);
 
             // Copy to clipboard
             Clipboard.SetText(url);
@@ -131,10 +131,10 @@ public sealed class SvnPathCopyContextMenu : SharpContextMenu
     {
         try
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            string resourceName = "SVNPathCopy.ShellExtension.Resources.share_svn.png";
+            var assembly = typeof(SvnPathCopyContextMenu).Assembly;
+            const string resourceName = "SVNPathCopy.ShellExtension.Resources.share_svn.png";
 
-            using Stream? stream = assembly.GetManifestResourceStream(resourceName);
+            using var stream = assembly.GetManifestResourceStream(resourceName);
             if (stream is not null)
             {
                 return Image.FromStream(stream);
