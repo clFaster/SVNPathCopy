@@ -89,7 +89,10 @@ SVNPathCopy/
 ├── tests/
 │   └── SVNPathCopy.Tests/          # Unit tests (NUnit + Shouldly)
 └── docs/
-    └── ...                         # TBA
+    ├── SVNPathCopy-Icon.png        # App icon used in README badges and installer
+    ├── SVNPathCopy-Icon.svg        # Scalable vector icon asset
+    ├── SVNPathCopyConfiguration.png# Configuration app screenshot
+    └── SVNPathCopyExtension.PNG    # Explorer context menu screenshot
 ```
 
 ## Configuration Storage
