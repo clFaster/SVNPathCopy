@@ -1,0 +1,21 @@
+version: 1
+
+test_patterns:
+  - 'tests/**'
+
+exclude_patterns:
+  - 'obj/**'
+  - 'bin/**'
+  - '.git/**'
+
+analyzers:
+  - name: csharp
+    enabled: true
+
+formatters:
+  - name: csharpier
+    enabled: true
+    config:
+      exclude_patterns:
+        - 'obj/**'
+        - 'bin/**'
