@@ -1,41 +1,47 @@
-# SVN Test Server (Podman)
+# SVN Test Environment
 
-Minimal instructions to run a local SVN server for testing the SVNPathCopy shell extension using Podman.
+Local SVN server for testing the SVNPathCopy shell extension.
 
-Prerequisites
-- Podman installed and `podman machine` available on Windows
-- SVN command-line client (TortoiseSVN command-line tools or SlikSVN)
+## Prerequisites
 
-Quick start
+- **Podman** installed with `podman machine` running
+- **SVN client** (TortoiseSVN command-line tools or SlikSVN)
+
+## Quick Start
+
 ```powershell
 cd docker
-podman machine start
-podman compose up -d
+.\setup-test-env.ps1
 ```
 
-Checkout the test repository
-```powershell
-mkdir C:\temp\svn-test
-cd C:\temp\svn-test
-svn checkout svn://localhost/testrepo . --username svnadmin --password svnadmin
-```
+That's it! The script will:
+1. Start the SVN server container
+2. Create a test repository with sample commits
+3. Set up a working copy at `C:\temp\svnpathcopy-test-wc`
+4. Open Explorer to the test folder
 
-Reset the test environment (fresh repo + scripted test data)
-```powershell
-cd docker
-./reset-test-env.ps1
-./setup-test-wc.ps1
-```
+## Test Data Created
 
-What the test setup provides
-- Repository URL: `svn://localhost/testrepo`
-- Default credentials: `svnadmin` / `svnadmin`
-- The `setup-test-wc.ps1` script creates three sequential commits with clearly named files, and leaves a mix of uncommitted items (modified, unversioned, scheduled-add) so you can test all states.
+| File/Folder | Status | Use Case |
+|-------------|--------|----------|
+| `committed_file.txt` | Clean, committed | Copy URL with revision |
+| `modified_file.txt` | Modified (uncommitted) | Copy URL of modified file |
+| `added_file.txt` | Scheduled for add | Copy URL before first commit |
+| `unversioned_file.txt` | Unversioned | Should show error/not appear |
+| `committed_folder/` | Clean, committed | Folder URL copying |
+| `file with spaces.txt` | Clean, committed | URL encoding test |
+| `special-chars_äöü.txt` | Clean, committed | Unicode handling |
 
-Quick troubleshooting
-- If Podman cannot connect, run `podman machine init` and `podman machine start`.
-- If `svn` is not found, install TortoiseSVN (include command-line tools) or SlikSVN.
+## Commands
 
-Reset and recreate steps are intentionally minimal — use `reset-test-env.ps1` to destroy the volume and start fresh.
+| Action | Command |
+|--------|---------|
+| Full reset + setup | `.\setup-test-env.ps1` |
+| Reset only (no setup) | `.\setup-test-env.ps1 -ResetOnly` |
+| Custom working copy path | `.\setup-test-env.ps1 -WorkingCopyPath "D:\my-test"` |
 
-That's all you need to run local tests for the shell extension.
+## Troubleshooting
+
+- **Podman not running**: Run `podman machine init` then `podman machine start`
+- **SVN not found**: Install TortoiseSVN with command-line tools option
+- **Port 3690 in use**: Stop other SVN servers or change the port in `docker-compose.yml`

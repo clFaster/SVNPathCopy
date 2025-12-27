@@ -79,8 +79,7 @@ dotnet build src/SVNPathCopy.Installer/SVNPathCopy.Installer.wixproj
 
 ```
 SVNPathCopy/
-├── docker/
-│   └── ...                         # TBA
+├── docker/                         # Local SVN test server (Podman)
 ├── src/
 │   ├── SVNPathCopy.Core/           # .NET Standard 2.0 - Shared library
 │   ├── SVNPathCopy.ShellExtension/ # .NET Framework 4.8 - Shell extension
