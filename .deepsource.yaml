@@ -11,11 +11,3 @@ exclude_patterns:
 analyzers:
   - name: csharp
     enabled: true
-
-formatters:
-  - name: csharpier
-    enabled: true
-    config:
-      exclude_patterns:
-        - 'obj/**'
-        - 'bin/**'
