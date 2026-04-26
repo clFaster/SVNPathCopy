@@ -101,8 +101,8 @@ jobs:
 
       - name: Add WiX extensions
         run: |
-          wix extension add WixToolset.UI.wixext
-          wix extension add WixToolset.Util.wixext
+          dotnet wix extension add WixToolset.UI.wixext
+          dotnet wix extension add WixToolset.Util.wixext
 
       - name: Restore dependencies
         run: dotnet restore
