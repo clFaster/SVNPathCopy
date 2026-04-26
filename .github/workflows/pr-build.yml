@@ -97,7 +97,7 @@ jobs:
           dotnet-quality: 'preview'
 
       - name: Install WiX Toolset
-        run: dotnet tool install --global wix
+        run: dotnet tool restore
 
       - name: Add WiX extensions
         run: |
