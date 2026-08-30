@@ -104,7 +104,7 @@ jobs:
             -f "name=VERSION" -f "value=${{ steps.bump_version.outputs.new_version }}"
 
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: main
 
@@ -141,7 +141,7 @@ jobs:
     permissions: write-all
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: main
 
